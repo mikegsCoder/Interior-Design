@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Interior Design";
+    ViewData["SubTitle"] = "Furnishing your home";
+}
+
+<!--==========================
+    Intro Section
+============================-->
+<section id="intro" class="wow fadeInUp">
+
+    <div class="intro-content">
+        <h2>
+            <span style="text-transform: none;">@ViewData["Title"]</span>
+            <br>
+            @ViewData?["SubTitle"]?.ToString()?.ToUpper()
+        </h2>
+        <div>
+            <!-- Contact Us Button -->
+            <a asp-area=""
+                asp-controller="Contact"
+                asp-action="Index"
+                class="btn-get-started"
+                onclick="displayBusyIndicator()">
+                    Contact Us
+            </a>
+        </div>
+    </div>
+    <div id="intro-carousel" class="owl-carousel" style="z-index: 0;">
+        <div class="item" style="background-image: url('/img/intro-carousel/1.jpg');"></div>
+        <div class="item" style="background-image: url('/img/intro-carousel/2.jpg');"></div>
+        <div class="item" style="background-image: url('/img/intro-carousel/3.jpg');"></div>
+    </div>
+</section><!-- #intro -->
