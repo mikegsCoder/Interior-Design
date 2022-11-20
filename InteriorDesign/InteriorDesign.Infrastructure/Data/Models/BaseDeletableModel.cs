@@ -7,7 +7,6 @@ namespace InteriorDesign.Infrastructure.Data.Models
     {
         public bool IsDeleted { get; set; }
 
-        //[Column(TypeName = "date")]
         public DateTime? DeletedOn { get; set; }
     }
 }

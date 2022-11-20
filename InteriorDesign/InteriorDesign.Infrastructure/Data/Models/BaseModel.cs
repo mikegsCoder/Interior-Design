@@ -9,10 +9,8 @@ namespace InteriorDesign.Infrastructure.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        //[Column(TypeName = "date")]
         public DateTime CreatedOn { get; set; }
 
-        //[Column(TypeName = "date")]
         public DateTime? ModifiedOn { get; set; }
     }
 }
