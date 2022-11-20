@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InteriorDesign.Infrastructure.Constants;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,11 +14,11 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
         }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(DataConstants.OrderFirstNameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(DataConstants.OrderLastNameMaxLength)]
         public string LastName { get; set; }
 
         [Required]
@@ -29,15 +30,15 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
         public string Phone { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(DataConstants.OrderDeliveryAddressMaxLength)]
         public string DeliveryAddress { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(DataConstants.OrderAdditionalDetailsMaxLength)]
         public string? AdditionalDetails { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
-        [Precision(18, 2)]
+        [Precision(DataConstants.OrderPricePrecision, DataConstants.OrderPriceScale)]
         public decimal Price { get; set; }
 
         [Required]
