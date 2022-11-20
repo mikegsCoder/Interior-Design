@@ -7,7 +7,7 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
     {
         public ProductColor()
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.NewGuid().ToString();
             this.Products = new HashSet<Product>();
         }
 

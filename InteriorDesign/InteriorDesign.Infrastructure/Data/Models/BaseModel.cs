@@ -7,7 +7,7 @@ namespace InteriorDesign.Infrastructure.Data.Models
     public abstract class BaseModel<TKey> : IAuditInfo
     {
         [Key]
-        public Guid Id { get; set; }
+        public TKey Id { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

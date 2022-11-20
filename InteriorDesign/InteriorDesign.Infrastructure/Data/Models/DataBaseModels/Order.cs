@@ -9,7 +9,7 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
     {
         public Order()
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.NewGuid().ToString();
             this.ConfiguredProducts = new List<ConfiguredProduct>();
         }
 
