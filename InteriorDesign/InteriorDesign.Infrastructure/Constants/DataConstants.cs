@@ -1,6 +1,6 @@
 ﻿namespace InteriorDesign.Infrastructure.Constants
 {
-    internal class DataConstants
+    internal static class DataConstants
     {
         // ChatMessage model
         public const int ChatSenderMaxLength = 30;
