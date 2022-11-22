@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
+﻿using InteriorDesign.Infrastructure.Data.Configuration;
+using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +32,10 @@ namespace InteriorDesign.Infrastricture.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new IdentityRoleConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserRoleConfiguration());
+
             base.OnModelCreating(builder);
         }
     }
