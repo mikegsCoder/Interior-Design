@@ -66,7 +66,55 @@ namespace InteriorDesign.Web.InitialSeed
                 IsDeleted = false
             };
 
-
+            // Product Types:
+            var chair = new ProductType()
+            {
+                Name = "Chair",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var table = new ProductType()
+            {
+                Name = "Table",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var bed = new ProductType()
+            {
+                Name = "Bed",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var desk = new ProductType()
+            {
+                Name = "Desk",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var cabinet = new ProductType()
+            {
+                Name = "Cabinet",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var shelf = new ProductType()
+            {
+                Name = "Shelf",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var sofa = new ProductType()
+            {
+                Name = "Sofa",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var wardrobe = new ProductType()
+            {
+                Name = "Wardrobe",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
         }
     }
 }
