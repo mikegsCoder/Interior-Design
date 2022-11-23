@@ -17,13 +17,13 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
         public string Name { get; set; }
 
         [Required]
-        public Guid ModelId { get; set; }
+        public string ModelId { get; set; }
 
         [ForeignKey(nameof(ModelId))]
         public ProductModel Model { get; set; }
 
         [Required]
-        public Guid ColorId { get; set; }
+        public string ColorId { get; set; }
 
         [ForeignKey(nameof(ColorId))]
         public ProductColor Color { get; set; }
