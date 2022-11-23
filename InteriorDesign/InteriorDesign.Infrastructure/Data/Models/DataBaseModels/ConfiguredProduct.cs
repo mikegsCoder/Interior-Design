@@ -13,7 +13,7 @@ namespace InteriorDesign.Infrastructure.Data.Models.DataBaseModels
         }
 
         [Required]
-        public Guid ProductId { get; set; }
+        public string ProductId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
         public virtual Product Product { get; set; }
