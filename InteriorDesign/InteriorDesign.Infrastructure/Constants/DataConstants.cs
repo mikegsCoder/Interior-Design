@@ -58,5 +58,11 @@
         public const int TestimonialAuthorMaxLength = 30;
         public const int TestimonialTitleMaxLength = 30;
         public const int TestimonialContentMaxLength = 500;
+
+        // ConfiguredProduct
+        public const int ConfiguredProductQuantityMin = 1;
+        public const int ConfiguredProductQuantityMax = 5;
+        public const int ConfiguredProductPricePrecision = 18;
+        public const int ConfiguredProductPriceScale = 2;
     }
 }
