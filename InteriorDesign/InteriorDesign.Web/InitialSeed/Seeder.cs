@@ -22,6 +22,51 @@ namespace InteriorDesign.Web.InitialSeed
 
             var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+            // Product Categories:
+            var office = new ProductCategory()
+            {
+                Name = "Office",
+                ImageUrl = "/storage/office/office.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var livingRoom = new ProductCategory()
+            {
+                Name = "Living Room",
+                ImageUrl = "/storage/livingRoom/livingRoom.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var bedRoom = new ProductCategory()
+            {
+                Name = "Bed Room",
+                ImageUrl = "/storage/bedRoom/bedRoom.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var youngRoom = new ProductCategory()
+            {
+                Name = "Young Room",
+                ImageUrl = "/storage/youngRoom/youngRoom.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var kitchen = new ProductCategory()
+            {
+                Name = "Kitchen",
+                ImageUrl = "/storage/kitchen/kitchen.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var garden = new ProductCategory()
+            {
+                Name = "Garden",
+                ImageUrl = "/storage/garden/garden.jpg",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+
+
         }
     }
 }
