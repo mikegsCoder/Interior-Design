@@ -2,6 +2,7 @@ using InteriorDesign.Infrastricture.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
+using InteriorDesign.Web.InitialSeed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -90,5 +91,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+await Seeder.SeedAsync(app);
 
 app.Run();
