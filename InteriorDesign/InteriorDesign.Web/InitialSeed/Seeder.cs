@@ -2061,6 +2061,328 @@ namespace InteriorDesign.Web.InitialSeed
                 Message = "Hi, I'd like to know the address of your new showroom in Varna.",
                 CreatedOn = DateTime.UtcNow,
             };
+
+            if (!dbContext.ProductTypes.Any())
+            {
+                var productTypes = new List<ProductType>() {
+                    chair,
+                    table,
+                    bed,
+                    desk,
+                    cabinet,
+                    shelf,
+                    sofa,
+                    wardrobe
+                };
+
+                await dbContext.ProductTypes.AddRangeAsync(productTypes);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.ProductCategories.Any())
+            {
+                var productCategories = new List<ProductCategory>() {
+                    office,
+                    livingRoom,
+                    bedRoom,
+                    youngRoom,
+                    kitchen,
+                    garden
+                };
+
+                await dbContext.ProductCategories.AddRangeAsync(productCategories);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.ProductColors.Any())
+            {
+                var productColors = new List<ProductColor>() {
+                    white,
+                    grey,
+                    yellow,
+                    brown,
+                    red,
+                    green,
+                    blue,
+                    black,
+                    alder,
+                    oak,
+                    beech,
+                    walnut
+                };
+
+                await dbContext.ProductColors.AddRangeAsync(productColors);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.ProductModels.Any())
+            {
+                var productModels = new List<ProductModel>() {
+                    boston103b,
+                    boston128b,
+                    boston214b,
+                    boston102c,
+                    houston312c,
+                    boston103c,
+                    atlanta100w,
+                    atlanta131w,
+                    chicago1805c,
+                    comfort1203c,
+                    dallas740c,
+                    dallas2813t,
+                    richmond619t,
+                    riverside164t,
+                    upa106c,
+                    upa116c,
+                    charleston185c,
+                    charleston196c,
+                    springfield167c,
+                    boston306t,
+                    victorville111t,
+                    nashville114c,
+                    providence123c,
+                    armchairsb685c,
+                    houston1105c,
+                    houston828c,
+                    columbus116s,
+                    richmond634s,
+                    boston234t,
+                    charlote146t,
+                    glendale100t,
+                    bristol126c,
+                    providence111c,
+                    miami279c,
+                    miami280c,
+                    murrieta118d,
+                    murrieta121d,
+                    boston296s,
+                    miami156s,
+                    saratosa111s,
+                    bedford103w,
+                    bedford742w,
+                    murrieta101w,
+                    renton101b,
+                    renton106b,
+                    boston104c,
+                    omaha108c,
+                    omaha116c,
+                    houston100c,
+                    houston1127c,
+                    houston204c,
+                    houston396c,
+                    columbia101t,
+                    renton100t,
+                    aurora111w,
+                    boston104w,
+                    columbia102w,
+                    renton105w
+                };
+
+                await dbContext.ProductModels.AddRangeAsync(productModels);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.Products.Any())
+            {
+                var products = new List<Product>() {
+                    boston103bo,
+                    boston128bo,
+                    boston128bw,
+                    boston214bo,
+                    boston214bw,
+                    boston102co,
+                    boston102cw,
+                    houston312cg,
+                    providence103co,
+                    providence103cw,
+                    atlanta100wb,
+                    atlanta100wo,
+                    atlanta100ww,
+                    atlanta131wb,
+                    atlanta131wo,
+                    atlanta131ww,
+                    chikago1805cb,
+                    chikago1805cg,
+                    chikago1805cgy,
+                    comfort1203cb,
+                    dallas740cb,
+                    dallas740cgy,
+                    dallas2813tb,
+                    dallas2813tw,
+                    richmond619tbr,
+                    richmond619tw,
+                    riverside164tb,
+                    riverside164tgy,
+                    upa106cgy,
+                    upa106cr,
+                    upa106cw,
+                    upa116cgy,
+                    upa116cr,
+                    upa116cw,
+                    charleston185cb,
+                    charleston185cbu,
+                    charleston185cg,
+                    charleston185cgy,
+                    charleston196cb,
+                    charleston196cg,
+                    charleston196cgy,
+                    springfield167cb,
+                    springfield167cgy,
+                    boston306to,
+                    boston306tw,
+                    victorville111ta,
+                    victorville111to,
+                    victorville111tw,
+                    nashville114co,
+                    nashville114cw,
+                    providence123co,
+                    providence123cw,
+                    armchair685cgy,
+                    houston1105cb,
+                    houston1105cg,
+                    houston1105cgy,
+                    houston1105cy,
+                    houston828cb,
+                    houston828cgy,
+                    houston828cg,
+                    columbus116sb,
+                    columbus116sr,
+                    columbus116sgy,
+                    richmond634sb,
+                    richmond634sgy,
+                    boston234to,
+                    boston234tw,
+                    charlote146to,
+                    glendale100tgy,
+                    glendale100to,
+                    bristol126co,
+                    bristol126cw,
+                    providence111co,
+                    providence111cw,
+                    miami279cb,
+                    miami279cw,
+                    miami280cb,
+                    miami280cgy,
+                    murrieta118da,
+                    murrieta118db,
+                    murrieta118dwt,
+                    murrieta121da,
+                    murrieta121db,
+                    murrieta121dwt,
+                    boston296so,
+                    boston296sw,
+                    miami156sb,
+                    miami156so,
+                    miami156sw,
+                    saratosa111so,
+                    saratosa111sw,
+                    bedford103ww,
+                    bedford742wo,
+                    murrieta101wo,
+                    murrieta101ww,
+                    renton101bb,
+                    renton101bgy,
+                    renton101bgr,
+                    renton106bw,
+                    boston104co,
+                    omaha108cw,
+                    omaha116cb,
+                    omaha116cy,
+                    houston100cy,
+                    houston1127cg,
+                    houston1127cgy,
+                    houston204cw,
+                    houston396cgy,
+                    columbia101tw,
+                    renton100tw,
+                    aurora111ww,
+                    boston104ww,
+                    columbia102ww,
+                    renton105ww
+                };
+
+                await dbContext.Products.AddRangeAsync(products);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.DesignImages.Any())
+            {
+                var designImages = new List<DesignImage>() {
+                    image1,
+                    image2,
+                    image3,
+                    image4,
+                    image5,
+                    image6,
+                    image7,
+                    image8
+                };
+
+                await dbContext.DesignImages.AddRangeAsync(designImages);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.Testimonials.Any())
+            {
+                var testimonials = new List<Testimonial>() {
+                    testimonial1,
+                    testimonial2,
+                    testimonial3,
+                    testimonial4,
+                    testimonial5,
+                    testimonial6,
+                    testimonial7
+                };
+
+                await dbContext.Testimonials.AddRangeAsync(testimonials);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.TeamMembers.Any())
+            {
+                var team = new List<TeamMember>() {
+                    teamMember1,
+                    teamMember2,
+                    teamMember3,
+                    teamMember4
+                };
+
+                await dbContext.TeamMembers.AddRangeAsync(team);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.ChatMessages.Any())
+            {
+                var messages = new List<ChatMessage>() {
+                    chatMessage1,
+                    chatMessage2,
+                    chatMessage3
+                };
+
+                await dbContext.ChatMessages.AddRangeAsync(messages);
+
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!dbContext.Contacts.Any())
+            {
+                var contacts = new List<Contact>() {
+                    contact1,
+                    contact2
+                };
+
+                await dbContext.Contacts.AddRangeAsync(contacts);
+
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }
