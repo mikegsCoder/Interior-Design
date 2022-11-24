@@ -1858,6 +1858,7 @@ namespace InteriorDesign.Web.InitialSeed
                 IsDeleted = false
             };
 
+            // Design images
             var image1 = new DesignImage()
             {
                 ImageUrl = "/img/portfolio/1.jpg",
@@ -1915,6 +1916,7 @@ namespace InteriorDesign.Web.InitialSeed
                 IsActive = true
             };
 
+            // Testimonials
             var testimonial1 = new Testimonial()
             {
                 Author = "Kelly Adams",
@@ -1970,6 +1972,56 @@ namespace InteriorDesign.Web.InitialSeed
                 Content = "There is all you need to transform your home in a cozy place for your family. If you need high level professionals and excellent furnish - this it the right place!",
                 CreatedOn = DateTime.UtcNow,
                 IsActive = true
+            };
+
+            // Team members
+            var teamMember1 = new TeamMember()
+            {
+                FirstName = "Amanda",
+                LastName = "Jepson",
+                Position = "Designer",
+                ImageUrl = "/img/team/team1.jpg",
+                TwitterUrl = "https://twitter.com/",
+                FacebookUrl = "https://www.facebook.com/",
+                GooglePlusUrl = "https://plus.google.com/",
+                LinkedInUrl = "https://www.linkedin.com/",
+                CreatedOn = DateTime.UtcNow
+            };
+            var teamMember2 = new TeamMember()
+            {
+                FirstName = "French",
+                LastName = "Lincon",
+                Position = "Designer",
+                ImageUrl = "/img/team/team2.jpg",
+                TwitterUrl = "https://twitter.com/",
+                FacebookUrl = "https://www.facebook.com/",
+                GooglePlusUrl = "https://plus.google.com/",
+                LinkedInUrl = "https://www.linkedin.com/",
+                CreatedOn = DateTime.UtcNow
+            };
+            var teamMember3 = new TeamMember()
+            {
+                FirstName = "James",
+                LastName = "Smith",
+                Position = "Chief Executive Officer",
+                ImageUrl = "/img/team/team3.jpg",
+                TwitterUrl = "https://twitter.com/",
+                FacebookUrl = "https://www.facebook.com/",
+                GooglePlusUrl = "https://plus.google.com/",
+                LinkedInUrl = "https://www.linkedin.com/",
+                CreatedOn = DateTime.UtcNow
+            };
+            var teamMember4 = new TeamMember()
+            {
+                FirstName = "Michell",
+                LastName = "Kellon",
+                Position = "Designer",
+                ImageUrl = "/img/team/team4.jpg",
+                TwitterUrl = "https://twitter.com/",
+                FacebookUrl = "https://www.facebook.com/",
+                GooglePlusUrl = "https://plus.google.com/",
+                LinkedInUrl = "https://www.linkedin.com/",
+                CreatedOn = DateTime.UtcNow
             };
         }
     }
