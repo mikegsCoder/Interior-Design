@@ -157,6 +157,80 @@ namespace InteriorDesign.Web.InitialSeed
                 chair,
                 table
             };
+
+            // Product Colors:
+            var white = new ProductColor()
+            {
+                Name = "White",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var grey = new ProductColor()
+            {
+                Name = "Grey",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var yellow = new ProductColor()
+            {
+                Name = "Yellow",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var brown = new ProductColor()
+            {
+                Name = "Brown",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var red = new ProductColor()
+            {
+                Name = "Red",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var green = new ProductColor()
+            {
+                Name = "Green",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var blue = new ProductColor()
+            {
+                Name = "Blue",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var black = new ProductColor()
+            {
+                Name = "Black",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var alder = new ProductColor()
+            {
+                Name = "Alder",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var oak = new ProductColor()
+            {
+                Name = "Oak",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var beech = new ProductColor()
+            {
+                Name = "Beech",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
+            var walnut = new ProductColor()
+            {
+                Name = "Walnut",
+                CreatedOn = DateTime.UtcNow,
+                IsDeleted = false
+            };
         }
     }
 }
