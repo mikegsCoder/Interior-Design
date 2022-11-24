@@ -1914,6 +1914,63 @@ namespace InteriorDesign.Web.InitialSeed
                 CreatedOn = DateTime.UtcNow,
                 IsActive = true
             };
+
+            var testimonial1 = new Testimonial()
+            {
+                Author = "Kelly Adams",
+                Title = "Long time Customer",
+                Content = "I bought furniture for my kitchen from this company and I'm amazed from the quality. Recommend their services to everyone!",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial2 = new Testimonial()
+            {
+                Author = "Finton Gofnes",
+                Title = "Loyal Customer",
+                Content = "Stop searching for professionals - you found them! I called their designers in my home they made their magic. Now it looks awesome. Thank you guys!",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial3 = new Testimonial()
+            {
+                Author = "Marcus Kell",
+                Title = "Customer",
+                Content = "I was happy to find this guys. They prepared really amazing project for my apartment. Recommend them!",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial4 = new Testimonial()
+            {
+                Author = "Williams Belly",
+                Title = "Long time Customer",
+                Content = "My new living room looks great with this new furniture. It's a nice gift to my wife.",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial5 = new Testimonial()
+            {
+                Author = "Larry Hanson",
+                Title = "Customer",
+                Content = "I bought from this company new furniture for my garden and was very satisfied. Now already it's a nice place to rest.",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial6 = new Testimonial()
+            {
+                Author = "Mario James",
+                Title = "Loyal Customer",
+                Content = "After I had repaired my village house I needed to furnish it. I'm happy I fond these guys. With their furnish my house become a really cozy place.",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var testimonial7 = new Testimonial()
+            {
+                Author = "Peter Holmes",
+                Title = "Customer",
+                Content = "There is all you need to transform your home in a cozy place for your family. If you need high level professionals and excellent furnish - this it the right place!",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
         }
     }
 }
