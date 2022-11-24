@@ -1915,6 +1915,34 @@ namespace InteriorDesign.Web.InitialSeed
                 CreatedOn = DateTime.UtcNow,
                 IsActive = true
             };
+            var image9 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/9.jpg",
+                Name = "Modern bedroom",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = false
+            };
+            var image10 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/10.jpg",
+                Name = "Living room in white",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = false
+            };
+            var image11 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/11.jpg",
+                Name = "Modern apartment",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = false
+            };
+            var image12 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/12.jpg",
+                Name = "Contemporary bedroom",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = false
+            };
 
             // Testimonials
             var testimonial1 = new Testimonial()
@@ -2320,7 +2348,11 @@ namespace InteriorDesign.Web.InitialSeed
                     image5,
                     image6,
                     image7,
-                    image8
+                    image8,
+                    image9,
+                    image10,
+                    image11,
+                    image12
                 };
 
                 await dbContext.DesignImages.AddRangeAsync(designImages);
