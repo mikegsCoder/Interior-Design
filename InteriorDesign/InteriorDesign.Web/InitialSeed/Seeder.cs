@@ -2023,6 +2023,44 @@ namespace InteriorDesign.Web.InitialSeed
                 LinkedInUrl = "https://www.linkedin.com/",
                 CreatedOn = DateTime.UtcNow
             };
+
+            // Chat messages
+            var chatMessage1 = new ChatMessage()
+            {
+                Sender = "employee1@mail.com",
+                Message = "A truck full of new furniture arrived in the storage. I'll need help with this. 🙁",
+                CreatedOn = DateTime.UtcNow
+            };
+            var chatMessage2 = new ChatMessage()
+            {
+                Sender = "employee2@mail.com",
+                Message = "Ok, I'll send someone to help you in a few minutes.",
+                CreatedOn = DateTime.UtcNow
+            };
+            var chatMessage3 = new ChatMessage()
+            {
+                Sender = "employee1@mail.com",
+                Message = "Thanks a lot! 🙂",
+                CreatedOn = DateTime.UtcNow
+            };
+
+            // Contacts
+            var contact1 = new Contact()
+            {
+                From = "user@mail.com",
+                Subject = "Individual interior design consultation",
+                Message = "Hi, my name is Peter. I'd like to have an individual consultation with your designers about furnishing my village house if it's possible.",
+                IsAnswered = true,
+                CreatedOn = DateTime.UtcNow,
+                ModifiedOn = DateTime.UtcNow,
+            };
+            var contact2 = new Contact()
+            {
+                From = "user@mail.com",
+                Subject = "Showroom address",
+                Message = "Hi, I'd like to know the address of your new showroom in Varna.",
+                CreatedOn = DateTime.UtcNow,
+            };
         }
     }
 }
