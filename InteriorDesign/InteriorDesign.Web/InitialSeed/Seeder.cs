@@ -1857,6 +1857,63 @@ namespace InteriorDesign.Web.InitialSeed
                 CreatedOn = DateTime.UtcNow,
                 IsDeleted = false
             };
+
+            var image1 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/1.jpg",
+                Name = "Modern bedroom in blue",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image2 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/2.jpg",
+                Name = "Fancy kitchen",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image3 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/3.jpg",
+                Name = "Shiny living room",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image4 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/4.jpg",
+                Name = "Let garden into your home",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image5 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/5.jpg",
+                Name = "Bedroom in white",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image6 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/6.jpg",
+                Name = "Contemporary living room",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image7 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/7.jpg",
+                Name = "Bedroom in violet",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
+            var image8 = new DesignImage()
+            {
+                ImageUrl = "/img/portfolio/8.jpg",
+                Name = "Dream office",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = true
+            };
         }
     }
 }
