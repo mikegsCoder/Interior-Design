@@ -115,6 +115,48 @@ namespace InteriorDesign.Web.InitialSeed
                 CreatedOn = DateTime.UtcNow,
                 IsDeleted = false
             };
+
+            // Product Categories - Product Types:
+            office.ProductTypes = new HashSet<ProductType>()
+            {
+                chair,
+                desk,
+                cabinet,
+                shelf,
+                wardrobe
+            };
+            livingRoom.ProductTypes = new HashSet<ProductType>()
+            {
+                chair,
+                table,
+                cabinet,
+                sofa
+            };
+            bedRoom.ProductTypes = new HashSet<ProductType>()
+            {
+                bed,
+                cabinet,
+                wardrobe
+            };
+            youngRoom.ProductTypes = new HashSet<ProductType>()
+            {
+                chair,
+                table,
+                bed,
+                cabinet,
+                wardrobe
+            };
+            kitchen.ProductTypes = new HashSet<ProductType>()
+            {
+                chair,
+                table,
+                cabinet
+            };
+            garden.ProductTypes = new HashSet<ProductType>()
+            {
+                chair,
+                table
+            };
         }
     }
 }
