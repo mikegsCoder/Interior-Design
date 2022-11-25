@@ -1,0 +1,30 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Who we are?";
+}
+
+<!--==========================
+    About Section
+============================-->
+<section id="about" class="wow fadeInUp">
+    <div class="container">
+        <div class="section-header">
+            <h2>@ViewData["Title"]?.ToString()?.ToUpper()</h2>
+            <p>
+                Our company takes care of your comfort and tranquility to deliver you the dream home you want.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 about-img">
+                <img src="img/about-img.png" alt="">
+            </div>
+
+            <partial name="_AboutUsPartial">
+ 
+        </div>
+
+    </div>
+</section><!-- #about -->
+
+<vc:testimonials></vc:testimonials>
