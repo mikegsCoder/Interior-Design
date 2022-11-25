@@ -12,6 +12,12 @@ namespace InteriorDesign.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult NotFound404()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Page not found";
+}
+
+<div class="container text-center">
+    <div>
+        <span>
+            <p style="color: red; font-size: 10rem; font-weight: bold; margin-top: 1vh; margin-bottom: 0;">404</p>
+        </span>
+        <div class="section-header" style="margin-top: 0;">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+        <p>
+            This page does not exist.<br />
+            <a asp-area=""
+                asp-controller="Home"
+                asp-action="Index"
+                onclick="displayBusyIndicator()">
+                    <strong>back to Home Page</strong>
+            </a>
+        </p>
+    </div>
+</div>
