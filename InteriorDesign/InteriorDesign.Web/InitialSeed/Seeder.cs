@@ -273,14 +273,6 @@ namespace InteriorDesign.Web.InitialSeed
                 CreatedOn = DateTime.UtcNow,
                 IsDeleted = false
             };
-            var boston103c = new ProductModel()
-            {
-                Name = "Boston 103c",
-                Type = cabinet,
-                Category = bedRoom,
-                CreatedOn = DateTime.UtcNow,
-                IsDeleted = false
-            };
             var atlanta100w = new ProductModel()
             {
                 Name = "Atlanta 100w",
@@ -1975,7 +1967,7 @@ namespace InteriorDesign.Web.InitialSeed
                 Title = "Long time Customer",
                 Content = "My new living room looks great with this new furniture. It's a nice gift to my wife.",
                 CreatedOn = DateTime.UtcNow,
-                IsActive = true
+                IsActive = false
             };
             var testimonial5 = new Testimonial()
             {
@@ -1991,7 +1983,7 @@ namespace InteriorDesign.Web.InitialSeed
                 Title = "Loyal Customer",
                 Content = "After I had repaired my village house I needed to furnish it. I'm happy I fond these guys. With their furnish my house become a really cozy place.",
                 CreatedOn = DateTime.UtcNow,
-                IsActive = true
+                IsActive = false
             };
             var testimonial7 = new Testimonial()
             {
@@ -2000,6 +1992,14 @@ namespace InteriorDesign.Web.InitialSeed
                 Content = "There is all you need to transform your home in a cozy place for your family. If you need high level professionals and excellent furnish - this it the right place!",
                 CreatedOn = DateTime.UtcNow,
                 IsActive = true
+            };
+            var testimonial8 = new Testimonial()
+            {
+                Author = "Garry Smith",
+                Title = "Customer",
+                Content = "Their designers are high class professionals. Recommend them!",
+                CreatedOn = DateTime.UtcNow,
+                IsActive = false
             };
 
             // Team members
@@ -2154,7 +2154,6 @@ namespace InteriorDesign.Web.InitialSeed
                     boston214b,
                     boston102c,
                     houston312c,
-                    boston103c,
                     atlanta100w,
                     atlanta131w,
                     chicago1805c,
@@ -2369,7 +2368,8 @@ namespace InteriorDesign.Web.InitialSeed
                     testimonial4,
                     testimonial5,
                     testimonial6,
-                    testimonial7
+                    testimonial7,
+                    testimonial8
                 };
 
                 await dbContext.Testimonials.AddRangeAsync(testimonials);
