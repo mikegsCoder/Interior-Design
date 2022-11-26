@@ -27,6 +27,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSignalR();
 
+builder.Services.AddApplicationServices();
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
