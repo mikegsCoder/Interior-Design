@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DesignImageViewModel>
+
+<div class="container-fluid">
+    <div class="row no-gutters">
+        @foreach (var image in Model)
+        {
+            <partial name="_GalleryImagePartial.cshtml" , model=image/>
+        }
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model DesignImageViewModel
+
+<div class="col-lg-3 col-md-4">
+    <div class="portfolio-item wow fadeInUp">
+        <a href="@Model.ImageUrl" class="portfolio-popup">
+            <img src="@Model.ImageUrl" alt="@Model.Name">
+            <div class="portfolio-overlay">
+                <div class="portfolio-info">
+                    <h2 class="wow fadeInUp">@Model.Name</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
