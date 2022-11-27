@@ -9,13 +9,16 @@ namespace InteriorDesign.Web.ViewComponents
     {
         private readonly IOurTeamService _ourTeamService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger _logger;
 
         public OurTeamViewComponent(
             IOurTeamService ourTeamService,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            ILogger<OurTeamViewComponent> logger)
         {
             _ourTeamService = ourTeamService;
             _httpContextAccessor = httpContextAccessor;
+            _logger = logger;
         }
 
         public IViewComponentResult Invoke()
@@ -23,15 +26,17 @@ namespace InteriorDesign.Web.ViewComponents
             try
             {
                 // Use this exception to test error handling:
-                //throw new Exception();
+                //throw new Exception("Test Exception");
 
                 var model = _ourTeamService.GetTeamAsync().GetAwaiter().GetResult();
 
                 return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _httpContextAccessor.HttpContext.Response.Redirect("/Home/ApplicationError");
+                _logger.LogError(string.Concat(nameof(OurTeamViewComponent), ": ", ex.Message), ex);
+                
+                _httpContextAccessor?.HttpContext?.Response.Redirect("/Home/ApplicationError");
 
                 return View(new List<OurTeamViewModel>());
             }

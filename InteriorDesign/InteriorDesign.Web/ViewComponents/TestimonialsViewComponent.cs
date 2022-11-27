@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Core.ViewModels.TestimonialViewModels;
+﻿using InteriorDesign.Core.Services.Application.AboutUsService;
+using InteriorDesign.Core.ViewModels.TestimonialViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InteriorDesign.Web.ViewComponents
@@ -6,37 +7,38 @@ namespace InteriorDesign.Web.ViewComponents
     [ViewComponent(Name = "Testimonials")]
     public class TestimonialsViewComponent : ViewComponent
     {
-
         private readonly IAboutUsService _aboutUsService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger _logger;
 
         public TestimonialsViewComponent(
             IAboutUsService aboutUsService,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            ILogger<TestimonialsViewComponent> logger)
         {
             _aboutUsService = aboutUsService;
             _httpContextAccessor = httpContextAccessor;
+            _logger = logger;
         }
 
-        //public async Task<IViewComponentResult> InvokeAsync()
         public IViewComponentResult Invoke()
         {
             try
             {
                 // Use this exception to test error handling:
-                //throw new Exception();
+                //throw new Exception("Test Exception");
 
                 var model = _aboutUsService.GetActiveTestimonialsAsync().GetAwaiter().GetResult();
 
                 return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                _httpContextAccessor.HttpContext.Response.Redirect("/Home/ApplicationError");
+                _logger.LogError(string.Concat(nameof(TestimonialsViewComponent), ": ", ex.Message), ex);
+                
+                _httpContextAccessor?.HttpContext?.Response.Redirect("/Home/ApplicationError");
 
                 return View(new List<TestimonialViewModel>());
-
-                //return RedirectToAction("ApplicationError", "Home");
             }
         }
     }
