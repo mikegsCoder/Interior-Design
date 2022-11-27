@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InteriorDesign.Core.ViewModels.TestimonialViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InteriorDesign.Web.ViewComponents
 {

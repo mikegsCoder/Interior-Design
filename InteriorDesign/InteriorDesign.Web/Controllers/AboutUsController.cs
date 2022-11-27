@@ -2,7 +2,7 @@
 
 namespace InteriorDesign.Web.Controllers
 {
-    public class AboutUsController : Controller
+    public class AboutUsController : BaseController
     {
         [HttpGet]
         public IActionResult Index()

@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace InteriorDesign.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         [HttpGet]
         public IActionResult Index()

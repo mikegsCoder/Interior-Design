@@ -1,9 +1,8 @@
-﻿using InteriorDesign.Core.Services.Application.OurTeamService;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace InteriorDesign.Web.Controllers
 {
-    public class OurTeamController : Controller
+    public class OurTeamController : BaseController
     {
         [HttpGet]
         public IActionResult Index()
