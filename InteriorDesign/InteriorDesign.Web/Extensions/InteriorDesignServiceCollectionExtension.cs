@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Core.Services.Application.OurTeamService;
+﻿using InteriorDesign.Core.Services.Application.AboutUsService;
+using InteriorDesign.Core.Services.Application.OurTeamService;
 using InteriorDesign.Infrastructure.Repositories;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped(typeof(IOurTeamService), typeof(OurTeamService));
+            services.AddScoped(typeof(IAboutUsService), typeof(AboutUsService));
 
             return services;
         }
