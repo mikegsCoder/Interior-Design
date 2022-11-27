@@ -1,4 +1,5 @@
 ﻿using InteriorDesign.Core.Services.Application.AboutUsService;
+using InteriorDesign.Core.Services.Application.GalleryService;
 using InteriorDesign.Core.Services.Application.OurTeamService;
 using InteriorDesign.Infrastructure.Repositories;
 
@@ -15,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped(typeof(IOurTeamService), typeof(OurTeamService));
             services.AddScoped(typeof(IAboutUsService), typeof(AboutUsService));
+            services.AddScoped(typeof(IGalleryService), typeof(GalleryService));
 
             return services;
         }
