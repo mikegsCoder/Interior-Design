@@ -19,5 +19,15 @@
         public const int TeamMemberImageUrlMaxLength = 200;
         public const int TeamMemberSocialUrlMinLength = 5;
         public const int TeamMemberSocialUrlMaxLength = 100;
+
+        // ContactViewModel
+        public const int ContactFromMinLength = 8;
+        public const int ContactFromMaxLength = 20;
+
+        public const int ContactSubjectMinLength = 5;
+        public const int ContactSubjectMaxLength = 50;
+
+        public const int ContactMessageMinLength = 5;
+        public const int ContactMessageMaxLength = 1000;
     }
 }
