@@ -25,5 +25,28 @@ namespace InteriorDesign.Web.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(ContactViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Contact");
+            }
+
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                await _contactService.SaveMessageAsync(model);
+
+                return RedirectToAction(nameof(Index), new { sent = MessageConstants.Success });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ContactController), nameof(Index));
+            }
+        }
     }
 }
