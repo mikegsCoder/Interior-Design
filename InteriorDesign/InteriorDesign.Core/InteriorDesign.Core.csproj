@@ -10,4 +10,8 @@
     <ProjectReference Include="..\InteriorDesign.Infrastructure\InteriorDesign.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Common\" />
+  </ItemGroup>
+
 </Project>
