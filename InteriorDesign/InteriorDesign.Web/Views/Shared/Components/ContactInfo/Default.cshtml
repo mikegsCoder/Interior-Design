@@ -1,0 +1,17 @@
+﻿<div class="col-lg-5">
+    <div class="contact-address">
+        <i class="ion-ios-location-outline"></i>
+        <h3>Address</h3>
+        <address>@ViewBag.Address</address>
+    </div>
+    <div class="contact-phone">
+        <i class="ion-ios-telephone-outline"></i>
+        <h3>Phone Number</h3>
+        <p><a href="tel:@ViewBag.Phone.Replace(" ", string.Empty)">@ViewBag.Phone</a></p>
+    </div>
+    <div class="contact-email">
+        <i class="ion-ios-email-outline"></i>
+        <h3>Email</h3>
+        <p><a href="mailto:@ViewBag.Email">@ViewBag.Email</a></p>
+    </div>
+</div>
