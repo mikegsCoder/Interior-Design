@@ -1,0 +1,95 @@
+﻿@using InteriorDesign.Core.Constants
+
+@model ContactViewModel
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<section id="contact">
+    <div class="container">
+        @if (ViewBag.Message == MessageConstants.Success)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p class="text-center" style="margin: 0; font-weight: bold;">Message successfully sent.</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        else if (ViewBag.Message == MessageConstants.Failed)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="text-center" style="margin: 0; font-weight: bold;">Your message is not sent. Please try again later.</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <div class="wow fadeInUp">
+            <div class="section-header">
+                <h2>@ViewData["Title"]</h2>
+                <p>
+                    If you have some questions about our products don't hesitate to contact us.
+                </p>
+            </div>
+
+            <div class="row contact-info">
+
+                <vc:contact-info></vc:contact-info>
+              
+                <div class="col-lg-7">
+                    <div class="container">
+                        <div class="form">
+
+                            <!-- Form itself -->
+                            <form method="post" name="sentMessage" class="well" id="contactForm">
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input asp-for="@Model.From" type="text" name="From" placeholder="Your Email" required="" class="form-control" value="@User.Identity.Name">
+                                        <span asp-validation-for="From" class="text-danger"></span>
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <input asp-for="@Model.Subject" type="text" name="Subject" required="" placeholder="Subject" class="form-control">
+                                        <span asp-validation-for="Subject" class="text-danger"></span>
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <textarea asp-for="@Model.Message"
+                                            name="Message"
+                                            style="resize:none;"
+                                            class="form-control"
+                                            rows="10"
+                                            cols="100"
+                                            spellcheck="false"
+                                            placeholder="Your message ...">
+                                        </textarea>
+                                        <span asp-validation-for="Message" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <button type="submit" 
+                                    class="btn btn-primary pull-right">
+                                        Send
+                                </button>
+                                <br />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_MapPartial" />
+ 
+</section><!-- #contact -->
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
