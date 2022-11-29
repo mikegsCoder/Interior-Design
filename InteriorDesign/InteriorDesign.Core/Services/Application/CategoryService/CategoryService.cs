@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Core.ViewModels.CategoryViewModels;
+﻿using InteriorDesign.Core.ViewModels.CategoryTypeViewModels;
+using InteriorDesign.Core.ViewModels.CategoryViewModels;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
 using InteriorDesign.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -56,6 +57,44 @@ namespace InteriorDesign.Core.Services.Application.CategoryService
             }
 
             return categoriesInfo;
+        }
+
+        public async Task<IEnumerable<CategoryTypeViewModel>> GetTypesByCategoryInfoAsync(string categoryName)
+        {
+            var categoryTypesInfo = new List<CategoryTypeViewModel>();
+            var category = await _categories.AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Name == categoryName);
+
+            var types = await _types.AllAsNoTracking()
+                .Where(t => t.ProductCategories.Contains(category))
+                .Select(t => t.Name)
+                .ToListAsync();
+
+            foreach (var type in types)
+            {
+                var models = await _models.AllAsNoTracking()
+                   .Where(m => m.Category.Name == category.Name && m.Type.Name == type)
+                   .ToListAsync();
+
+                var products = await _products.AllAsNoTracking()
+                    .Where(p => models.Contains(p.Model))
+                    .CountAsync();
+
+                var firstProduct = await _products.AllAsNoTracking()
+                    .FirstOrDefaultAsync(p => models.Contains(p.Model));
+
+                categoryTypesInfo.Add(new CategoryTypeViewModel
+                {
+                    CategoryName = categoryName,
+                    TypeName = type,
+                    ProductModelsCount = models.Count(),
+                    ProductsCount = products,
+                    TypeImageUrl = firstProduct.ImageUrl,
+                    CategoryImageUrl = category.ImageUrl
+                });
+            }
+
+            return categoryTypesInfo;
         }
     }
 }
