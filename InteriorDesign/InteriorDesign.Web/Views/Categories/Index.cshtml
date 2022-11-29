@@ -1,0 +1,40 @@
+﻿@model List<CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div>
+    <div class="card wow fadeInUp" style="margin-bottom: 4rem;">
+        <div class="card-header border-0">
+            <h3 class="card-title" style="margin-left: 1rem; color: orangered;">
+                @ViewData["Title"]
+            </h3>
+            <div class="card-tools">
+                <h3 class="card-title" style="margin-right: 3rem; color: darkorange;">
+                    categories count: <strong>@Model.Count</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+            <table class="table table-striped table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product types</th>
+                        <th>Product models</th>
+                        <th>Products</th>
+                        <th>Open</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <partial name="_CategoryRowPartial" , model=category />
+                        @*Html.RenderPartial("~/Views/Shared/_CategoryRowPartial.cshtml", category);*@
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
