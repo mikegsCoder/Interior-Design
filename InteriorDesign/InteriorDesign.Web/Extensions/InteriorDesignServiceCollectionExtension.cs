@@ -4,7 +4,9 @@ using InteriorDesign.Core.Services.Application.GalleryService;
 using InteriorDesign.Core.Services.Application.OurTeamService;
 using InteriorDesign.Core.Services.Application.TypeService;
 using InteriorDesign.Core.Services.Application.UserContactService;
+using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
 using InteriorDesign.Infrastructure.Repositories;
+using InteriorDesign.Web.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -16,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient(typeof(CustomEmailConfirmationTokenProvider<ApplicationUser>));
 
             services.AddScoped(typeof(IOurTeamService), typeof(OurTeamService));
             services.AddScoped(typeof(IAboutUsService), typeof(AboutUsService));
