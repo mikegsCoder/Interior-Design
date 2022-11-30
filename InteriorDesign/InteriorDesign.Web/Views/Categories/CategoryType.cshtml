@@ -1,0 +1,38 @@
+﻿@model List<CategoryTypeViewModel>
+
+@{
+    ViewData["Title"] = "Category Types";
+}
+
+<div>
+    <div class="card wow fadeInUp" style="margin-bottom: 4rem; margin-top: 4rem;">
+        <div class="card-header border-0">
+            <h3 class="card-title"style="margin-left: 1rem; color: orangered;">
+                Product types in category @Model[0].CategoryName:
+            </h3>
+            <div class="card-tools">
+                <h3 class="card-title" style="margin-right: 3rem; color: darkorange;">
+                    product types count: <strong>@Model.Count</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+            <table class="table table-striped table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Product models</th>
+                        <th>Products</th>
+                        <th>Open</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var type in Model)
+                    {
+                        <partial name="_CategoryTypeRowPartial" , model=type />
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
