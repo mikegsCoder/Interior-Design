@@ -1,5 +1,6 @@
 ﻿using InteriorDesign.Core.Services.Application.GalleryService;
 using InteriorDesign.Core.ViewModels.DesignImageViewModels;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InteriorDesign.Web.ViewComponents
@@ -10,36 +11,44 @@ namespace InteriorDesign.Web.ViewComponents
         private readonly IGalleryService _galleryService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger _logger;
+        private readonly IMemoryCache _cache;
 
         public DashboardViewComponent(
             IGalleryService galleryService,
             IHttpContextAccessor httpContextAccessor,
-            ILogger<DashboardViewComponent> logger)
+            ILogger<DashboardViewComponent> logger,
+            IMemoryCache cache)
         {
             _galleryService = galleryService;
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
+            _cache = cache;
         }
 
         public IViewComponentResult Invoke()
         {
-            try
+            if (!_cache.TryGetValue<IEnumerable<DesignImageViewModel>>("Gallery", out var model))
             {
-                // Use this exception to test error handling:
-                //throw new Exception("Test Exception");
+                try
+                {
+                    // Use this exception to test error handling:
+                    //throw new Exception("Test Exception");
 
-                var model = _galleryService.GetActiveImagesAsync().GetAwaiter().GetResult();
+                    model = _galleryService.GetActiveImagesAsync().GetAwaiter().GetResult();
 
-                return View(model);
+                    _cache.Set("Gallery", model, TimeSpan.FromMinutes(5));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(string.Concat(nameof(DashboardViewComponent), ": ", ex.Message), ex);
+
+                    _httpContextAccessor?.HttpContext?.Response.Redirect("/Home/ApplicationError");
+
+                    return View(new List<DesignImageViewModel>());
+                }
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(string.Concat(nameof(DashboardViewComponent), ": ", ex.Message), ex);
 
-                _httpContextAccessor?.HttpContext?.Response.Redirect("/Home/ApplicationError");
-
-                return View(new List<DesignImageViewModel>());
-            }
+            return View(model);
         }
     }
 }
