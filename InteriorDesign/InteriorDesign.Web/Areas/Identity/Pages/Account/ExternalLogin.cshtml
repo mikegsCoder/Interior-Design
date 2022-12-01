@@ -4,7 +4,37 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="login-box wow fadeInUp" style="margin: 0 auto;">
+    <div class="section-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg" style="text-decoration: underline; font-weight: bold; color: orangered;">Associate your @Model.ProviderDisplayName account.</p>
+            
+            <p id="external-login-description" style="color: orangered; text-align:justify;">
+                You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+                Please enter an email address for this site below and click the Register button to finish
+                logging in.
+            </p>
+
+            <div class="social-auth-links text-center mb-3">
+                <form id="external-account" asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating" style="margin-bottom: 1rem;">
+                        <label asp-for="Input.Email" class="form-label float-left"></label>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h1>@ViewData["Title"]</h1>
 <h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
 <hr />
 
@@ -26,7 +56,7 @@
             <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
