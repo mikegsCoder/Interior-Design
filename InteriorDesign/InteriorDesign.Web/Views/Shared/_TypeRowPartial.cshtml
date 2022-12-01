@@ -1,0 +1,20 @@
+﻿@model TypeViewModel
+
+<tr>
+    <td>
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-circle img-size-32 mr-2">
+        @Model.Name
+    </td>
+    <td>@Model.ProductCategoriesCount</td>
+    <td>@Model.ProductModelsCount</td>
+    <td>@Model.ProductsCount</td>
+    <td>
+        <a asp-area=""
+            asp-controller="Types"
+            asp-action="@Model.Name"
+            class="text-muted"
+            onclick="displayBusyIndicator()">
+                <i class="fa fa-folder-open-o"></i>
+        </a>
+    </td>
+</tr>
