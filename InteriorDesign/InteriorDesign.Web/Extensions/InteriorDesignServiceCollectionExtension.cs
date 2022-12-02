@@ -3,6 +3,7 @@ using InteriorDesign.Core.Services.Application.CategoryService;
 using InteriorDesign.Core.Services.Application.GalleryService;
 using InteriorDesign.Core.Services.Application.ModelService;
 using InteriorDesign.Core.Services.Application.OurTeamService;
+using InteriorDesign.Core.Services.Application.ProductService;
 using InteriorDesign.Core.Services.Application.TypeService;
 using InteriorDesign.Core.Services.Application.UserContactService;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
@@ -28,6 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
             services.AddScoped(typeof(IModelService), typeof(ModelService));
             services.AddScoped(typeof(ITypeService), typeof(TypeService));
+            services.AddScoped(typeof(IProductService), typeof(ProductService));
 
             return services;
         }

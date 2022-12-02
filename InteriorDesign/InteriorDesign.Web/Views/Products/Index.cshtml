@@ -1,0 +1,41 @@
+﻿@model List<ProductInfoViewModel>
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<div>
+    <div class="card wow fadeInUp" style="margin-bottom: 4rem;">
+        <div class="card-header border-0">
+            <h3 class="card-title" style="margin-left: 1rem; color: orangered;">
+                @ViewData["Title"]
+            </h3>
+            <div class="card-tools">
+                <h3 class="card-title" style="margin-right: 3rem; color: darkorange;">
+                    products count: <strong>@Model.Count</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+            <table class="table table-striped table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <partial name="_ProductRowPartial" , model=product />
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
