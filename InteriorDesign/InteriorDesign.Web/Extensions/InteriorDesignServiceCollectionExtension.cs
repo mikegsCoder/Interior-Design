@@ -7,6 +7,7 @@ using InteriorDesign.Core.Services.Application.OurTeamService;
 using InteriorDesign.Core.Services.Application.ProductService;
 using InteriorDesign.Core.Services.Application.TypeService;
 using InteriorDesign.Core.Services.Application.UserContactService;
+using InteriorDesign.Core.Services.Common.EmailSendService;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
 using InteriorDesign.Infrastructure.Repositories;
 using InteriorDesign.Web.Services;
@@ -32,6 +33,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(ITypeService), typeof(TypeService));
             services.AddScoped(typeof(IProductService), typeof(ProductService));
             services.AddScoped(typeof(ICartService), typeof(CartService));
+
+            // common services used by Administrator and Employee roles:
+            services.AddScoped(typeof(IAppEmailSender), typeof(AppEmailSender));
 
             return services;
         }
