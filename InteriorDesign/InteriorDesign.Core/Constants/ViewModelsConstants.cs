@@ -43,5 +43,23 @@
         // ConfiguredProductViewModel
         public const int ConfiguredProductQuantityMinRange = 1;
         public const int ConfiguredProductQuantityMaxRange = 9;
+
+        // CreateOrderViewModel
+        public const int CreateOrderFirstNameMinLength = 3;
+        public const int CreateOrderFirstNameMaxLength = 20;
+
+        public const int CreateOrderLastNameMinLength = 3;
+        public const int CreateOrderLastNameMaxLength = 20;
+
+        public const int CreateOrderDeliveryAddressMinLength = 5;
+        public const int CreateOrderDeliveryAddressMaxLength = 200;
+
+        public const int CreateOrderAdditionalDetailsMaxLength = 200;
+
+        public const int CreateOrderPhoneMinLength = 7;
+        public const int CreateOrderPhoneMaxLength = 15;
+
+        public const int CreateOrderEmailMinLength = 5;
+        public const int CreateOrderEmailMaxLength = 25;
     }
 }
