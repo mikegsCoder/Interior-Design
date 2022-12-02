@@ -148,5 +148,25 @@ namespace InteriorDesign.Core.Services.Application.ProductService
 
             return productModel;
         }
+
+        public async Task AddToCartAsync(ProductViewModel model)
+        {
+            var product = await _products.AllAsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == model.ProductId);
+
+            var configuredProduct = new ConfiguredProduct
+            {
+                ProductId = product.Id,
+                Quantity = model.Quantity,
+                Price = product.Price * model.Quantity,
+                UserId = model.UserId,
+                CreatedOn = DateTime.UtcNow,
+                IsOrdered = false,
+                IsDeleted = false
+            };
+
+            await _configuredProducts.AddAsync(configuredProduct);
+            await _configuredProducts.SaveChangesAsync();
+        }
     }
 }
