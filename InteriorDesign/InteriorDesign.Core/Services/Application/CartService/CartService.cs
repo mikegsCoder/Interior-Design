@@ -115,5 +115,20 @@ namespace InteriorDesign.Core.Services.Application.CartService
 
             return productModel;
         }
+
+        public async Task EditAsync(ConfiguredProductViewModel model)
+        {
+            var configuredProduct = await _configuredProducts.All()
+                .FirstOrDefaultAsync(cp => cp.Id == model.Id);
+
+            var product = await _products.AllAsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == configuredProduct.ProductId);
+
+            configuredProduct.Quantity = model.Quantity;
+            configuredProduct.Price = model.Quantity * product.Price;
+            configuredProduct.ModifiedOn = DateTime.UtcNow;
+
+            await _configuredProducts.SaveChangesAsync();
+        }
     }
 }

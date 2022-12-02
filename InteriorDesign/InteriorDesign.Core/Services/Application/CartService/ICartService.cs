@@ -7,5 +7,7 @@ namespace InteriorDesign.Core.Services.Application.CartService
         Task<IEnumerable<ConfiguredProductViewModel>> GetAllProductsByUserIdAsync(string userId);
 
         Task<ConfiguredProductViewModel> GetProductByIdAsync(string productId);
+
+        Task EditAsync(ConfiguredProductViewModel model);
     }
 }

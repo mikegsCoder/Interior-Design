@@ -55,5 +55,28 @@ namespace InteriorDesign.Web.Controllers
                 return RedirectToError(ex, _logger, nameof(CartController), nameof(EditProduct));
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProduct(ConfiguredProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                await _service.EditAsync(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(CartController), nameof(EditProduct));
+            }
+        }
     }
 }
