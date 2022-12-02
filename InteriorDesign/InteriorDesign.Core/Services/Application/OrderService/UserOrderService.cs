@@ -36,5 +36,38 @@ namespace InteriorDesign.Core.Services.Application.UserOrderService
             
             return model;
         }
+
+        public async Task CreateOrderAsync(CreateOrderViewModel model)
+        {
+            var configuredProducts = await _configuredProducts.All()
+                .Where(p => p.UserId == model.UserId)
+                .ToListAsync();
+
+            var order = new Order
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Phone = model.Phone,
+                DeliveryAddress = model.DeliveryAddress,
+                AdditionalDetails = model.AdditionalDetails,
+                Price = model.TotalPrice,
+                ApplicationUserId = model.UserId,
+                IsShipped = false,
+                IsDeleted = false,
+                CreatedOn = DateTime.UtcNow,
+                ConfiguredProducts = configuredProducts
+            };
+
+            foreach (var configuredProduct in configuredProducts)
+            {
+                configuredProduct.IsOrdered = true;
+                configuredProduct.OrderedOn = DateTime.UtcNow;
+            }
+
+            await _orders.AddAsync(order);
+            await _orders.SaveChangesAsync();
+            await _configuredProducts.SaveChangesAsync();
+        }
     }
 }
