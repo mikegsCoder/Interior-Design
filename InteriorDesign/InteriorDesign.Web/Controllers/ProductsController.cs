@@ -45,5 +45,33 @@ namespace InteriorDesign.Web.Controllers
 
             return View(products);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Products(string modelId)
+        {
+            if (!_cache.TryGetValue<IEnumerable<ProductInfoViewModel>>("ProductsByModel", out var products))
+            {
+                try
+                {
+                    // Use this exception to test error handling:
+                    //throw new Exception("Test Exception");
+
+                    products = await _service.GetProductsByModelIdAsync(modelId);
+
+                    _cache.Set("ProductsByModel", products, TimeSpan.FromMinutes(5));
+
+                    //_cache.Set("ProductsByModel", products, new MemoryCacheEntryOptions
+                    //{
+                    //    SlidingExpiration = TimeSpan.FromMinutes(10)
+                    //});
+                }
+                catch (Exception ex)
+                {
+                    return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Products));
+                }
+            }
+
+            return View(products);
+        }
     }
 }
