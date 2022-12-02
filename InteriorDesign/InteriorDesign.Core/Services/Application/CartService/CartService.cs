@@ -76,5 +76,44 @@ namespace InteriorDesign.Core.Services.Application.CartService
 
             return productModels;
         }
+
+        public async Task<ConfiguredProductViewModel> GetProductByIdAsync(string productId)
+        {
+            var configuredProduct = await _configuredProducts.AllAsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == productId);
+
+            var product = await _products.AllAsNoTracking()
+                    .FirstOrDefaultAsync(p => p.Id == configuredProduct.ProductId);
+
+            var color = await _colors.AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == product.ColorId);
+
+            var model = await _models.AllAsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == product.ModelId);
+
+            var category = await _categories.AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == model.CategoryId);
+
+            var type = await _types.AllAsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == model.TypeId);
+
+            var productModel = new ConfiguredProductViewModel()
+            {
+                Id = configuredProduct.Id,
+                ProductId = product.Id,
+                CategoryName = category.Name,
+                TypeName = type.Name,
+                ProductName = product.Name,
+                ModelName = model.Name,
+                ColorName = color.Name,
+                ProductPrice = configuredProduct.Price,
+                SinglePrice = product.Price,
+                ImageUrl = product.ImageUrl,
+                UserId = configuredProduct.UserId,
+                Quantity = configuredProduct.Quantity
+            };
+
+            return productModel;
+        }
     }
 }
