@@ -114,5 +114,39 @@ namespace InteriorDesign.Core.Services.Application.ProductService
 
             return modelInfo;
         }
+
+        public async Task<ProductViewModel> GetProductByIdAsync(string productId)
+        {
+            var product = await _products.AllAsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == productId);
+
+            var color = await _colors.AllAsNoTracking()
+                    .FirstOrDefaultAsync(c => c.Id == product.ColorId);
+
+            var model = await _models.AllAsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == product.ModelId);
+
+            var category = await _categories.AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == model.CategoryId);
+
+            var type = await _types.AllAsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == model.TypeId);
+
+            var productModel = new ProductViewModel
+            {
+                ProductId = product.Id,
+                CategoryName = category.Name,
+                TypeName = type.Name,
+                ProductName = product.Name,
+                ModelName = model.Name,
+                ColorName = color.Name,
+                ProductPrice = product.Price,
+                ImageUrl = product.ImageUrl,
+                UserId = "",
+                Quantity = 1,
+            };
+
+            return productModel;
+        }
     }
 }

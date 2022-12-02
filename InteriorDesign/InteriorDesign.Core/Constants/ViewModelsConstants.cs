@@ -29,5 +29,15 @@
 
         public const int ContactMessageMinLength = 5;
         public const int ContactMessageMaxLength = 1000;
+
+        // ProductViewModel
+        public const double ProductPriceMinRange = 10.00;
+        public const double ProductPriceMaxRange = 2000.00;
+
+        public const int ProductImageUrlMinLength = 5;
+        public const int ProductImageUrlMaxLength = 200;
+
+        public const int ProductQuantityMinRange = 1;
+        public const int ProductQuantityMaxRange = 9;
     }
 }

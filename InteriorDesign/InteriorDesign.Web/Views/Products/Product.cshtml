@@ -1,0 +1,125 @@
+﻿@using InteriorDesign.Infrastructure.Data.Models.DataBaseModels
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div id="product-wrapper" class="wrapper wow fadeInUp">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-10">
+                    <h1>@String.Concat(Model.TypeName + " " + Model.ProductName + " of category " + Model.CategoryName)</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+                        <div class="col-12">
+                            <img src="@Model.ImageUrl" class="product-image" alt="@Model.ProductName">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h3 class="my-3">@Model.ProductName</h3>
+                        <p style="margin: 0;">Product type: @Model.TypeName</p>
+                        <p style="margin: 0;">Category: @Model.CategoryName</p>
+                        <p style="margin: 0;">Color: @Model.ColorName</p>
+                        <p style="margin: 0;">
+                            Single price: @String.Format("{0:0.00}", Model.ProductPrice).Replace(",", ".") <i class="fa fa-eur" aria-hidden="true"></i>
+                        </p>
+
+                        <hr>
+
+                        <div class="bg-gray py-2 px-3 mt-4">
+                            <h2 class="mb-0" style="margin: 0.5rem; text-align: center;">
+                                <span id="product-total">@String.Format("{0:0.00}", Model.ProductPrice).Replace(",", ".")</span> <i class="fa fa-eur" aria-hidden="true"></i>
+                            </h2>
+                            <h4 class="mt-0" style="text-align: center;">
+                                <small>Excluding delivery</small>
+                            </h4>
+                        </div>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <form asp-controller="Products" asp-action="Product" class="mt-4" style="display: flex;" enctype="multipart/form-data">
+                                <div>
+                                    <label asp-for="Quantity" style="margin: 0;" />
+                                    <input asp-for="Quantity"
+                                       class="input-quantity"
+                                       id="input-quantity"
+                                       type="number"
+                                       min="1"
+                                       max="9"
+                                       onchange="onChangeHandler()"
+                                       value="@Model.Quantity" />
+                                </div>
+
+                                <input type="hidden" asp-for="@Model.ProductId" />
+                                <input type="hidden" asp-for="@Model.ProductName" />
+                                <input type="hidden" asp-for="@Model.ProductPrice" />
+                                <input type="hidden" asp-for="@Model.CategoryName" />
+                                <input type="hidden" asp-for="@Model.TypeName" />
+                                <input type="hidden" asp-for="@Model.ModelName" />
+                                <input type="hidden" asp-for="@Model.ColorName" />
+                                <input type="hidden" asp-for="@Model.ImageUrl" />
+                                <input type="hidden" asp-for="@Model.ProductPriceString" value="10.00"/>
+
+                                <a asp-area=""
+                                    asp-controller="Products"
+                                    asp-action="Index"
+                                    class="btn btn-secondary btn-lg btn-flat"
+                                    style="width: 45%; margin-inline: 0.5rem;"
+                                    onclick="displayBusyIndicator()">
+                                        Cancel
+                                </a>
+
+                                <input type="submit"
+                                   class="btn btn-primary btn-lg btn-flat"
+                                   style="width: 45%;"
+                                   onclick="return confirm('Are you sure you want to add this product to your shopping cart?')"
+                                   value="Add to Cart" />
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+
+    <script type="text/javascript">
+        var singlePrice = JSON.parse('@Json.Serialize(@Model.ProductPrice)');
+        var quantity = '@Model.Quantity';
+
+        const priceElement = document.getElementById('product-total');
+        const quantityElement = document.getElementById('input-quantity');
+
+        let currentQuantity = quantityElement.value;
+
+        onChangeHandler = () => {
+            currentQuantity = quantityElement.value;
+            let currentPrice = currentQuantity * singlePrice;
+
+            priceElement.value = currentPrice;
+            priceElement.textContent = currentPrice.toFixed(2);
+        }
+    </script>
+</div>

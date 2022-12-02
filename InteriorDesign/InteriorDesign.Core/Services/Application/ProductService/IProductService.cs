@@ -7,5 +7,7 @@ namespace InteriorDesign.Core.Services.Application.ProductService
         Task<IEnumerable<ProductInfoViewModel>> GetAllProductsAsync();
 
         Task<IEnumerable<ProductInfoViewModel>> GetProductsByModelIdAsync(string modelId);
+
+        Task<ProductViewModel> GetProductByIdAsync(string productId);
     }
 }

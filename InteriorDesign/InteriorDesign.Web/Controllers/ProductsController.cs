@@ -59,11 +59,6 @@ namespace InteriorDesign.Web.Controllers
                     products = await _service.GetProductsByModelIdAsync(modelId);
 
                     _cache.Set("ProductsByModel", products, TimeSpan.FromMinutes(5));
-
-                    //_cache.Set("ProductsByModel", products, new MemoryCacheEntryOptions
-                    //{
-                    //    SlidingExpiration = TimeSpan.FromMinutes(10)
-                    //});
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +67,24 @@ namespace InteriorDesign.Web.Controllers
             }
 
             return View(products);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Product(string productId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                var viewModel = await _service.GetProductByIdAsync(productId);
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Product));
+            }
         }
     }
 }
