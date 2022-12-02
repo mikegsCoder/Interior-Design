@@ -1,4 +1,5 @@
 ﻿using InteriorDesign.Core.Services.Application.AboutUsService;
+using InteriorDesign.Core.Services.Application.CartService;
 using InteriorDesign.Core.Services.Application.CategoryService;
 using InteriorDesign.Core.Services.Application.GalleryService;
 using InteriorDesign.Core.Services.Application.ModelService;
@@ -30,6 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(IModelService), typeof(ModelService));
             services.AddScoped(typeof(ITypeService), typeof(TypeService));
             services.AddScoped(typeof(IProductService), typeof(ProductService));
+            services.AddScoped(typeof(ICartService), typeof(CartService));
 
             return services;
         }

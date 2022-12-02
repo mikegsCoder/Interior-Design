@@ -1,0 +1,23 @@
+﻿@model ConfiguredProductViewModel
+
+<tr>
+    <td>
+        <img src="@Model.ImageUrl" alt="@Model.ProductName" class="img-circle img-size-32 mr-2">
+        @Model.ProductName
+    </td>
+    <td>@Model.CategoryName</td>
+    <td>@Model.TypeName</td>
+    <td>@Model.ModelName</td>
+    <td>@Model.ColorName</td>
+    <td>@Model.Quantity</td>
+    <td>@String.Format("{0:0.00}", Model.ProductPrice) <i class="fa fa-eur" aria-hidden="true"></i></td>
+    <td>
+        <a asp-action="EditProduct"
+           asp-controller="Cart"
+           asp-route-productId="@Model.Id"
+           class="text-muted"
+           onclick="displayBusyIndicator()">
+            <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: darkred"></i>
+        </a>
+    </td>
+</tr>

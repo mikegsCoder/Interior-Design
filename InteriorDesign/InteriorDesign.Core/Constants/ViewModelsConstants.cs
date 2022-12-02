@@ -39,5 +39,9 @@
 
         public const int ProductQuantityMinRange = 1;
         public const int ProductQuantityMaxRange = 9;
+
+        // ConfiguredProductViewModel
+        public const int ConfiguredProductQuantityMinRange = 1;
+        public const int ConfiguredProductQuantityMaxRange = 9;
     }
 }
