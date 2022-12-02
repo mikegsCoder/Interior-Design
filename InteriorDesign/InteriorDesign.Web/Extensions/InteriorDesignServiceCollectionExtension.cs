@@ -7,10 +7,12 @@ using InteriorDesign.Core.Services.Application.OurTeamService;
 using InteriorDesign.Core.Services.Application.ProductService;
 using InteriorDesign.Core.Services.Application.TypeService;
 using InteriorDesign.Core.Services.Application.UserContactService;
+using InteriorDesign.Core.Services.Application.UserOrderService;
 using InteriorDesign.Core.Services.Common.EmailSendService;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
 using InteriorDesign.Infrastructure.Repositories;
 using InteriorDesign.Web.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -24,6 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient(typeof(CustomEmailConfirmationTokenProvider<ApplicationUser>));
 
+            services.AddScoped(typeof(IEmailSender), typeof(EmailSender));
             services.AddScoped(typeof(IOurTeamService), typeof(OurTeamService));
             services.AddScoped(typeof(IAboutUsService), typeof(AboutUsService));
             services.AddScoped(typeof(IGalleryService), typeof(GalleryService));
@@ -33,6 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(ITypeService), typeof(TypeService));
             services.AddScoped(typeof(IProductService), typeof(ProductService));
             services.AddScoped(typeof(ICartService), typeof(CartService));
+            services.AddScoped(typeof(IUserOrderService), typeof(UserOrderService));
 
             // common services used by Administrator and Employee roles:
             services.AddScoped(typeof(IAppEmailSender), typeof(AppEmailSender));
