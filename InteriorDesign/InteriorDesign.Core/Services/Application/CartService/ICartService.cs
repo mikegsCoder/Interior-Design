@@ -9,5 +9,7 @@ namespace InteriorDesign.Core.Services.Application.CartService
         Task<ConfiguredProductViewModel> GetProductByIdAsync(string productId);
 
         Task EditAsync(ConfiguredProductViewModel model);
+
+        Task DeleteProductByIdAsync(string productId);
     }
 }
