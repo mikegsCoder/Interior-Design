@@ -49,24 +49,19 @@ namespace InteriorDesign.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Products(string modelId)
         {
-            if (!_cache.TryGetValue<IEnumerable<ProductInfoViewModel>>("ProductsByModel", out var products))
+            try
             {
-                try
-                {
-                    // Use this exception to test error handling:
-                    //throw new Exception("Test Exception");
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
 
-                    products = await _service.GetProductsByModelIdAsync(modelId);
+                var products = await _service.GetProductsByModelIdAsync(modelId);
 
-                    _cache.Set("ProductsByModel", products, TimeSpan.FromMinutes(5));
-                }
-                catch (Exception ex)
-                {
-                    return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Products));
-                }
+                return View(products);
             }
-
-            return View(products);
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Products));
+            }
         }
 
         [HttpGet]
