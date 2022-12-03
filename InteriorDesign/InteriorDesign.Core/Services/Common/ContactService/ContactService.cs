@@ -17,7 +17,6 @@ namespace InteriorDesign.Core.Services.Common.ContactService
         public async Task<IEnumerable<AdminContactViewModel>> GetNotAnsweredContactsAsync()
         {
             var contacts = await _contacts.AllAsNoTracking()
-              //.Where(c => !c.IsDeleted && !c.IsAnswered)
               .Where(c => !c.IsAnswered)
               .Select(c => new AdminContactViewModel()
               {
@@ -30,6 +29,22 @@ namespace InteriorDesign.Core.Services.Common.ContactService
               .ToListAsync();
 
             return contacts;
+        }
+
+        public async Task<AdminContactViewModel> GetContactByIdAsync(string contactId)
+        {
+            var contact = await _contacts.AllAsNoTracking()
+                .Where(c => c.Id == contactId)
+                .Select(c => new AdminContactViewModel()
+                {
+                    Id = c.Id,
+                    From = c.From,
+                    Subject = c.Subject,
+                    Message = c.Message,
+                })
+                .FirstOrDefaultAsync();
+
+            return contact;
         }
     }
 }

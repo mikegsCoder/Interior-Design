@@ -38,5 +38,23 @@ namespace InteriorDesign.Web.Areas.Employee.Controllers
                 return RedirectToError(ex, _logger, nameof(ContactsController), nameof(Index));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AnswerToContact(string contactId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                var contact = await _contactService.GetContactByIdAsync(contactId);
+
+                return View(contact);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ContactsController), nameof(AnswerToContact));
+            }
+        }
     }
 }
