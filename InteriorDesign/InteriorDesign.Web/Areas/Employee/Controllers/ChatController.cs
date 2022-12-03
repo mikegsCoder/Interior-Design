@@ -42,5 +42,20 @@ namespace InteriorDesign.Web.Areas.Employee.Controllers
                 return RedirectToError(ex, _logger, nameof(ChatController), nameof(Index));
             }
         }
+
+        [HttpPost]
+        public async Task<string> SaveMessage(ChatViewModel model)
+        {
+            try
+            {
+                await _chatService.SaveMessageAsync(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Concat(nameof(ChatController), " - ", nameof(SaveMessage), ": ", ex.Message), ex);
+            }
+
+            return null;
+        }
     }
 }

@@ -24,5 +24,27 @@ namespace InteriorDesign.Core.Services.Common.ChatService
 
             return chatmodel;
         }
+
+        public async Task SaveMessageAsync(ChatViewModel model)
+        {
+            var messageContent = model.Message
+                .Replace(":)", "🙂")
+                .Replace(":(", "🙁")
+                .Replace(";)", "😉")
+                .Replace(":*", "😘")
+                .Replace("<3", "❤")
+                .Replace(":D", "😀")
+                .Replace(":P", "😜");
+
+            var message = new ChatMessage()
+            {
+                Sender = model.Sender,
+                Message = messageContent,
+                CreatedOn = DateTime.UtcNow
+            };
+
+            await _messages.AddAsync(message);
+            await _messages.SaveChangesAsync();
+        }
     }
 }
