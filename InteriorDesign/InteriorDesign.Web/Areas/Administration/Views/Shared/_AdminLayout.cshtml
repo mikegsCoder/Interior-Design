@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "Interior Design";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <meta content="Author" name="mikegsCoder" />
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.ico" rel="icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+          rel="stylesheet" />
+
+    <!-- Libraries CSS Files -->
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/lib/magnific-popup/magnific-popup.css" rel="stylesheet" />
+    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/css/adminlte.min.css" rel="stylesheet" />
+
+    <!-- Main Stylesheet File -->
+    <link href="~/css/style.css" rel="stylesheet" />
+
+    @await RenderSectionAsync("Head", false)
+</head>
+<body id="body">
+    <!--==========================
+        Header
+    ============================-->
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <h1>
+                    <a asp-area="" 
+                        asp-controller="Home" 
+                        asp-action="Index" 
+                        class="scrollto"
+                        onclick="displayBusyIndicator()">
+                            @ViewData?["Title"]?.ToString()?.ToUpper()
+                    </a>
+                </h1>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu" style="margin-top: 0.3rem;">
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Dashboard"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Admin Panel
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Accounts"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Accounts
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Orders"
+                            asp-action="AllOrders"
+                            onclick="displayBusyIndicator()">
+                                Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Contacts"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Contacts
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Products"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Products
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="OurTeam"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Our Team
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Gallery"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Gallery
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Testimonials"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Testimonials
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Administration"
+                            asp-controller="Chat"
+                            asp-action="Index"
+                            onclick="displayBusyIndicator()">
+                                Chat
+                        </a>
+                    </li>
+                    <partial name="_LoginPartial" />
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+    <div class="container" style="min-height: 90vh; padding-top: 1rem;">
+        <main role="main" class="pb-3">
+            <!--==========================
+                Loading spinner
+            ============================-->
+            <partial name="_LoadingPartial">
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <partial name="_CookieConsentPartial" />
+
+    <!--==========================
+        Footer
+    ============================-->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                Interior Design &copy; 2022 <a href="https://github.com/mikegsCoder" target="_blank" rel="noreferrer"><strong>mikegsCoder</strong></a>. All Rights Reserved
+            </div>
+            <div class="credits">
+                ASP.NET Core course project at <a href="https://softuni.bg/" target="_blank" rel="noreferrer">SoftUni</a>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript  -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/superfish/hoverIntent.js"></script>
+    <script src="~/lib/superfish/superfish.min.js"></script>
+    <script src="~/lib/wow/wow.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/magnific-popup/magnific-popup.min.js"></script>
+    <script src="~/lib/sticky/sticky.js"></script>
+    <script src="~/js/adminlte.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
