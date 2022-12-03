@@ -50,5 +50,49 @@ namespace InteriorDesign.Core.Services.Common.OrderService
 
             return ordersList;
         }
+
+        public async Task<OrderViewModel> GetOrderInfoByOrderIdAsync(string orderId)
+        {
+            var order = await _orders.AllAsNoTracking()
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            var model = new OrderViewModel
+            {
+                OrderId = orderId,
+                FirstName = order.FirstName,
+                LastName = order.LastName,
+                Email = order.Email,
+                Phone = order.Phone,
+                DeliveryAddress = order.DeliveryAddress,
+                AdditionalDetails = order.AdditionalDetails,
+                Price = order.Price,
+                IsShipped = order.IsShipped,
+                ShippedOn = order.ShippedOn,
+            };
+
+            return model;
+        }
+
+        public async Task ShipOrderAsync(string orderId)
+        {
+            var order = await _orders.All()
+                .Where(o => o.Id == orderId)
+                .Include(o => o.ConfiguredProducts)
+                .FirstOrDefaultAsync();
+
+            order.IsShipped = true;
+            order.ShippedOn = DateTime.UtcNow;
+            order.ModifiedOn = DateTime.UtcNow;
+
+            foreach (var configuredProduct in order.ConfiguredProducts)
+            {
+                _configuredProducts.Delete(configuredProduct);
+            }
+
+            _orders.Update(order);
+
+            await _configuredProducts.SaveChangesAsync();
+            await _orders.SaveChangesAsync();
+        }
     }
 }
