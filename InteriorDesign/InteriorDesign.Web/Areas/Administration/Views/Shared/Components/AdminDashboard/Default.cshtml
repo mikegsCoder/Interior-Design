@@ -1,0 +1,135 @@
+﻿@model AdminDashboardVeiwModel
+
+@if (Model.Created == false)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-inline: 0.5rem;">
+        <p class="text-center" style="margin: 0; font-weight: bold;">Error. Please try again later.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+else
+{
+    <div class="section-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    <div class="wow fadeInUp">
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445">Accounts :</div>
+                    <div class="card-body">@Model.AccountsCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #fd7e14">Employees :</div>
+                    <div class="card-body">@Model.EmployeesCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: gold">Administrators :</div>
+                    <div class="card-body">@Model.AdministratorsCount</div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445">Team Members :</div>
+                    <div class="card-body">@Model.TeamMembersCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #fd7e14">Testimonials :</div>
+                    <div class="card-body">@Model.TestimonialsCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: gold">Gallery Images :</div>
+                    <div class="card-body">@Model.ActiveGalleryImagesCount</div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445">Configured Products :</div>
+                    <div class="card-body">@Model.ConfiguredProductsCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #fd7e14">Orders :</div>
+                    <div class="card-body">@Model.OrdersCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: gold">Orders Value :</div>
+                    <div class="card-body">@String.Format("{0:0.00}", Model.OrdersValue) <i class="fa fa-eur" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-6" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445;">New Contacts :</div>
+                    <div class="card-body">@Model.NewContactsCount</div>
+                </div>
+            </div>
+            <div class="col-6" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445;">Messages in company chat :</div>
+                    <div class="card-body">@Model.MessagesCount</div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-3" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: skyblue">Product Categories :</div>
+                    <div class="card-body">@Model.CategoriesCount</div>
+                </div>
+            </div>
+            <div class="col-3" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: skyblue">Product Models :</div>
+                    <div class="card-body">@Model.ModelsCount</div>
+                </div>
+            </div>
+            <div class="col-3" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: skyblue">Product Colors :</div>
+                    <div class="card-body">@Model.ColorsCount</div>
+                </div>
+            </div>
+            <div class="col-3" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: skyblue">Products :</div>
+                    <div class="card-body">@Model.ProductsCount</div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+    </div>
+}

@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Core.Services.Application.AboutUsService;
+﻿using InteriorDesign.Core.Services.Administration.DashboardService;
+using InteriorDesign.Core.Services.Application.AboutUsService;
 using InteriorDesign.Core.Services.Application.CartService;
 using InteriorDesign.Core.Services.Application.CategoryService;
 using InteriorDesign.Core.Services.Application.GalleryService;
@@ -47,6 +48,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(IContactService), typeof(ContactService));
             services.AddScoped(typeof(IOrderService), typeof(OrderService));
             services.AddScoped(typeof(IChatService), typeof(ChatService));
+
+            // Administrator services:
+            services.AddScoped(typeof(IAdminDashboardService), typeof(AdminDashboardService));
 
             // Employee services:
             services.AddScoped(typeof(IEmployeeDashboardService), typeof(EmployeeDashboardService));
