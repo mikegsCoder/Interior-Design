@@ -65,5 +65,9 @@
         // ChatViewModel
         public const int ChatMessageMaxLength = 200;
         public const int ChatMessageMinLength = 2;
+
+        // AdminContactViewModel
+        public const int RespondMaxLength = 200;
+        public const int RespondMinLength = 3;
     }
 }
