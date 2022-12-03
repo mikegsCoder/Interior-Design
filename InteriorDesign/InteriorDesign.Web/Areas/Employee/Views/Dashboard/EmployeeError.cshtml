@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Application Error";
+}
+
+<div class="container text-center">
+    <div>
+        <span>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: red; font-size: 10rem; margin-top: 5vh;"></i>
+        </span>
+        <div class="section-header" style="margin-top: 6vh;">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+        <p>
+            Error Message: @TempData["Error"]
+            <br />
+            <a asp-area="Employee"
+                asp-controller="Dashboard"
+                asp-action="Index">
+                    <strong>back to Employee Panel</strong>
+            </a>
+        </p>
+    </div>
+</div>
