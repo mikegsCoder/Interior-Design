@@ -1,0 +1,12 @@
+﻿@model ChatMessage
+
+<li>
+    <div class="card bg-light" style="width: 100%;">
+        <div class="card-body">
+            <blockquote class="blockquote mb-0" style="margin-top: 0;">
+                <p style="margin-bottom: 10px;">@Model.Message</p>
+                <footer class="blockquote-footer">@Model.Sender</footer>
+            </blockquote>
+        </div>
+    </div>
+</li>

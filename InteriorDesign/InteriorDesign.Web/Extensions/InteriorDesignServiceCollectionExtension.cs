@@ -8,6 +8,7 @@ using InteriorDesign.Core.Services.Application.ProductService;
 using InteriorDesign.Core.Services.Application.TypeService;
 using InteriorDesign.Core.Services.Application.UserContactService;
 using InteriorDesign.Core.Services.Application.UserOrderService;
+using InteriorDesign.Core.Services.Common.ChatService;
 using InteriorDesign.Core.Services.Common.EmailSendService;
 using InteriorDesign.Core.Services.Employee.DashboardService;
 using InteriorDesign.Infrastructure.Data.Models.DataBaseModels;
@@ -41,6 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // common services used by Administrator and Employee roles:
             services.AddScoped(typeof(IAppEmailSender), typeof(AppEmailSender));
+            services.AddScoped(typeof(IChatService), typeof(ChatService));
 
             // Employee services:
             services.AddScoped(typeof(IEmployeeDashboardService), typeof(EmployeeDashboardService));

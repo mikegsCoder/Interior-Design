@@ -61,5 +61,9 @@
 
         public const int CreateOrderEmailMinLength = 5;
         public const int CreateOrderEmailMaxLength = 25;
+
+        // ChatViewModel
+        public const int ChatMessageMaxLength = 200;
+        public const int ChatMessageMinLength = 2;
     }
 }
