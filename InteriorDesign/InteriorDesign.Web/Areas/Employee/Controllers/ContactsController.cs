@@ -56,5 +56,27 @@ namespace InteriorDesign.Web.Areas.Employee.Controllers
                 return RedirectToError(ex, _logger, nameof(ContactsController), nameof(AnswerToContact));
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AnswerToContact(AdminContactViewModel model)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                var subject = model.Subject;
+                var body = $"<p>Email From: Interior Design</p><p>{model.Respond}</p> <p>Kind regards,</p> <p>  Interior Design Team.</p> <p>...</p> <p>{model.From} wrote:</p> <p>{model.Message}</p>";
+
+                await _emailSender.SendAsync(subject, body, model.From);
+                await _contactService.MarkContactAsAnsweredAsync(model.Id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ContactsController), nameof(AnswerToContact));
+            }
+        }
     }
 }

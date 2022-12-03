@@ -46,5 +46,19 @@ namespace InteriorDesign.Core.Services.Common.ContactService
 
             return contact;
         }
+
+        public async Task MarkContactAsAnsweredAsync(string contactId)
+        {
+            var contact = await _contacts.All()
+                .Where(c => c.Id == contactId)
+                .FirstOrDefaultAsync();
+
+            contact.IsAnswered = true;
+            contact.ModifiedOn = DateTime.UtcNow;
+
+            _contacts.Update(contact);
+
+            await _contacts.SaveChangesAsync();
+        }
     }
 }
