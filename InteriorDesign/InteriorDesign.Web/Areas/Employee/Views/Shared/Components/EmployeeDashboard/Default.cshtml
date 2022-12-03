@@ -1,0 +1,61 @@
+﻿@model EmployeeDashboardVeiwModel
+
+@if (Model.Created == false)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-inline: 0.5rem;">
+        <p class="text-center" style="margin: 0; font-weight: bold;">Error. Please try again later.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+else
+{
+    <div class="section-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    <div class="wow fadeInUp">
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445">Configured Products :</div>
+                    <div class="card-body">@Model.ConfiguredProductsCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #fd7e14">Orders :</div>
+                    <div class="card-body">@Model.OrdersCount</div>
+                </div>
+            </div>
+            <div class="col-4" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: gold">Orders Value :</div>
+                    <div class="card-body">@String.Format("{0:0.00}", Model.OrdersValue) <i class="fa fa-eur" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div style="padding-inline: 2rem; display: flex; flex-direction: row; justify-content: space-between">
+            <div class="col-6" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445;">New Contacts :</div>
+                    <div class="card-body">@Model.NewContactsCount</div>
+                </div>
+            </div>
+            <div class="col-6" style="margin-bottom: 0.5rem;">
+                <div class="card" style="width: 100%; box-shadow: 4px 4px 7px -1px rgba(0,0,0,0.40); text-align: center;">
+                    <div class="card-header" style="background-color: #56C445;">Messages in company chat :</div>
+                    <div class="card-body">@Model.MessagesCount</div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+    </div>
+}
