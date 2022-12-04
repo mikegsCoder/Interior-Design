@@ -1,0 +1,176 @@
+﻿@model IndexUsersViewModel
+
+@{
+    ViewData["Title"] = "Manage Accounts";
+}
+
+@section Head{
+<link href="~/css/alert.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@if (Model.Created == false)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-inline: 0.5rem;">
+        <p class="text-center" style="margin: 0; font-weight: bold;">Error. Please try again later.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+else
+{
+    <div class="section-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    @if (Model.Message == MessageConstants.Success)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-inline: 0.5rem;">
+            <p class="text-center" style="margin: 0; font-weight: bold;">Success.</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    else if (Model.Message == MessageConstants.Failed)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-inline: 0.5rem;">
+            <p class="text-center" style="margin: 0; font-weight: bold;">Error.</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+
+<div class="container wow fadeInUp">
+    @foreach (var user in Model.Users)
+    {
+        @if (user.IsAdmin)
+        {
+            <div class="row">
+                <div class="card" style="margin-inline: 0.5rem; width: 100%; background-color: #f9de8d">
+                    <div class="card-body" style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
+                        <div style="width: 50%;">
+                            <h5 class="card-title">User: @user.Email</h5>
+                            <p class="card-text">Type: Administrator</p>
+                        </div>
+                        <div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-end;">
+                            <a asp-area="Administration" 
+                                asp-controller="Accounts" 
+                                asp-action="RemoveAccountAdmin"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to remove administrator role for this account?')">
+                                    Remove Administrator role
+                            </a>
+
+                            <a asp-area="Administration" 
+                                asp-controller="Accounts" 
+                                asp-action="DeleteAccount"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to delete this account?')">
+                                    Delete account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if(user.IsEmployee)
+        {
+            <div class="row">
+                <div class="card" style="margin-inline: 0.5rem; width: 100%; background-color: #8ff2a5">
+                    <div class="card-body" style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
+                        <div style="width: 50%;">
+                            <h5 class="card-title">User: @user.Email</h5>
+                            <p class="card-text">Type: Employee</p>
+                        </div>
+                        <div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-end;">
+                            <a asp-area="Administration"
+                                asp-controller="Accounts"
+                                asp-action="MakeAccountAdmin"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to add administrator role to this account?')">
+                                    Add Administrator role
+                            </a>
+
+                            <a asp-area="Administration"
+                                asp-controller="Accounts"
+                                asp-action="RemoveAccountEmployee"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to remove employee role for this account?')">
+                                    Remove Employee role
+                            </a>
+
+                            <a asp-area="Administration" 
+                                asp-controller="Accounts" 
+                                asp-action="DeleteAccount"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm(' you sure you want to delete this account?')">
+                                    Delete account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="card" style="margin-inline: 0.5rem; width: 100%; background-color: #9be0ea">
+                    <div class="card-body" style="width: 100%; display: flex; flex-direction: row; justify-content: space-between;">
+                        <div style="width: 50%;">
+                            <h5 class="card-title">User: @user.Email</h5>
+                            <p class="card-text">Type: User</p>
+                        </div>
+
+                        <div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-end;">
+                            @if (!user.IsEmailConfirmed)
+                            {
+                                <a asp-area="Administration"
+                                    asp-controller="Accounts"
+                                    asp-action="ConfirmEmail"
+                                    asp-route-id="@user.Id"
+                                    class="btn btn-danger"
+                                    style="margin-inline: 5px; height: fit-content;"
+                                    onclick="return confirm('Are you sure you want to confirm this email?')">
+                                        Confirm Email
+                                </a>
+                            }
+
+                            <a asp-area="Administration"
+                                asp-controller="Accounts"
+                                asp-action="MakeAccountEmployee"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to add employee role to this account?')">
+                                    Add Employee role
+                            </a>
+
+                            <a asp-area="Administration"
+                                asp-controller="Accounts"
+                                asp-action="DeleteAccount"
+                                asp-route-id="@user.Id"
+                                class="btn btn-danger"
+                                style="margin-inline: 5px; height: fit-content;"
+                                onclick="return confirm('Are you sure you want to delete this account?')">
+                                    Delete account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

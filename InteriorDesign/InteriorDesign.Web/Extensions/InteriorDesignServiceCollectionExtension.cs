@@ -1,4 +1,5 @@
-﻿using InteriorDesign.Core.Services.Administration.DashboardService;
+﻿using InteriorDesign.Core.Services.Administration.AccountService;
+using InteriorDesign.Core.Services.Administration.DashboardService;
 using InteriorDesign.Core.Services.Application.AboutUsService;
 using InteriorDesign.Core.Services.Application.CartService;
 using InteriorDesign.Core.Services.Application.CategoryService;
@@ -51,6 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Administrator services:
             services.AddScoped(typeof(IAdminDashboardService), typeof(AdminDashboardService));
+            services.AddScoped(typeof(IAccountService), typeof(AccountService));
 
             // Employee services:
             services.AddScoped(typeof(IEmployeeDashboardService), typeof(EmployeeDashboardService));
