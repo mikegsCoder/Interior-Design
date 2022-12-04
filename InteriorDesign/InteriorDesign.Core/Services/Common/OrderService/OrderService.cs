@@ -18,6 +18,40 @@ namespace InteriorDesign.Core.Services.Common.OrderService
             _configuredProducts = configuredProducts;
         }
 
+        public async Task<IEnumerable<OrderViewModel>> GetOrdersInfoAsync()
+        {
+            var ordersList = new List<OrderViewModel>();
+
+            var orders = await _orders.AllAsNoTracking()
+                .ToListAsync();
+
+            foreach (var order in orders)
+            {
+                var model = new OrderViewModel
+                {
+                    OrderId = order.Id,
+                    FirstName = order.FirstName,
+                    LastName = order.LastName,
+                    Email = order.Email,
+                    Phone = order.Phone,
+                    DeliveryAddress = order.DeliveryAddress,
+                    AdditionalDetails = order.AdditionalDetails,
+                    Price = order.Price,
+                    IsShipped = order.IsShipped,
+                    ShippedOn = order.ShippedOn,
+                };
+
+                ordersList.Add(model);
+            }
+
+            ordersList = ordersList
+                .OrderBy(o => o.IsShipped)
+                .ThenBy(o => o.ShippedOn)
+                .ToList();
+
+            return ordersList;
+        }
+
         public async Task<IEnumerable<OrderViewModel>> GetNotShippedOrdersAsync()
         {
             var ordersList = new List<OrderViewModel>();

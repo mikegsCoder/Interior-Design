@@ -1,0 +1,50 @@
+﻿@model OrderViewModel
+
+<tr style="text-align: center;">
+    <td>@string.Concat(Model.FirstName + " " + Model.LastName)</td>
+    <td>@Model.Email</td>
+    <td>@Model.Phone</td>
+    <td>@Model.DeliveryAddress</td>
+    @if (String.IsNullOrEmpty(Model.AdditionalDetails))
+    {
+        <td>No Details</td>
+    }
+    else
+    {
+        <td>@Model.AdditionalDetails</td>
+    }
+    @if (Model.IsShipped)
+    {
+        <td>Yes</td>
+    }
+    else
+    {
+        <td>No</td>
+    }
+    @if (Model.IsShipped)
+    {
+        <td>@Model.ShippedOn</td>
+    }
+    else
+    {
+        <td>-</td>
+    }
+    <td>@String.Format("{0:0.00}", Model.Price) <i class="fa fa-eur" aria-hidden="true"></i></td>
+    <td>
+        @if (!Model.IsShipped)
+        {
+            <a asp-area="Administration"
+                asp-controller="Orders"
+                asp-action="ShipOrder"
+                asp-route-orderId="@Model.OrderId"
+                onclick="return confirm('Are you sure you want to ship this order?')"
+                class="text-muted">
+                     <i class="fa fa-truck" aria-hidden="true"></i>
+            </a>
+        }
+        else
+        {
+            <i class="fa fa-check" aria-hidden="true"></i>
+        }
+    </td>
+</tr>

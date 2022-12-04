@@ -4,6 +4,8 @@ namespace InteriorDesign.Core.Services.Common.OrderService
 {
     public interface IOrderService
     {
+        Task<IEnumerable<OrderViewModel>> GetOrdersInfoAsync();
+
         Task<IEnumerable<OrderViewModel>> GetNotShippedOrdersAsync();
 
         Task<OrderViewModel> GetOrderInfoByOrderIdAsync(string orderId);
