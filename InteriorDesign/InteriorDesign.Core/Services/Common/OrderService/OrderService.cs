@@ -57,7 +57,6 @@ namespace InteriorDesign.Core.Services.Common.OrderService
             var ordersList = new List<OrderViewModel>();
 
             var orders = await _orders.AllAsNoTracking()
-                //.Where(o => !o.IsDeleted && !o.IsShipped)
                 .Where(o => !o.IsShipped)
                 .ToListAsync();
 
@@ -126,6 +125,20 @@ namespace InteriorDesign.Core.Services.Common.OrderService
             _orders.Update(order);
 
             await _configuredProducts.SaveChangesAsync();
+            await _orders.SaveChangesAsync();
+        }
+
+        public async Task ClearShippedAsync()
+        {
+            var ordersToClear = await _orders.All()
+                .Where(o => o.IsShipped)
+                .ToListAsync();
+
+            foreach (var order in ordersToClear)
+            {
+                _orders.Delete(order);
+            }
+
             await _orders.SaveChangesAsync();
         }
     }

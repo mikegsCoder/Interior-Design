@@ -11,5 +11,7 @@ namespace InteriorDesign.Core.Services.Common.OrderService
         Task<OrderViewModel> GetOrderInfoByOrderIdAsync(string orderId);
 
         Task ShipOrderAsync(string orderId);
+
+        Task ClearShippedAsync();
     }
 }

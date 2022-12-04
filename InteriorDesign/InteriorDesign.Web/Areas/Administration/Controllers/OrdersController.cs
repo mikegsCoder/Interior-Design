@@ -61,5 +61,23 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(OrdersController), nameof(ShipOrder));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ClearShipped()
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                await _service.ClearShippedAsync();
+
+                return RedirectToAction(nameof(AllOrders));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(OrdersController), nameof(ClearShipped));
+            }
+        }
     }
 }
