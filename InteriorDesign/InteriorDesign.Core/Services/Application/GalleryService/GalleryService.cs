@@ -27,5 +27,19 @@ namespace InteriorDesign.Core.Services.Application.GalleryService
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<DesignImageViewModel>> GetAllImagesAsync()
+        {
+            return await _images.AllAsNoTracking()
+               .Select(i => new DesignImageViewModel()
+               {
+                   ImageId = i.Id,
+                   ImageUrl = i.ImageUrl,
+                   Name = i.Name,
+                   IsActive = i.IsActive
+               })
+               .OrderByDescending(i => i.IsActive)
+               .ToListAsync();
+        }
     }
 }

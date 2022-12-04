@@ -1,0 +1,38 @@
+﻿@model DesignImageViewModel
+
+<div class="col-lg-3 col-md-6">
+    <div class="member">
+        <div class="pic"><img src="@Model.ImageUrl" alt=""></div>
+        <div class="details">
+            <h4>@Model.Name</h4>
+            <span style="margin-bottom: 0.5rem;">
+                Status: <strong>@(Model.IsActive ? "Active" : "Inactive")</strong>
+            </span>
+
+            @if (!Model.IsActive)
+            {
+                <a asp-area="Administration"
+                    asp-controller="Gallery"
+                    asp-action="Activate"
+                    asp-route-imageId="@Model.ImageId"
+                    class="btn btn-info btn-lg btn-flat"
+                    style="width: 50%; margin-inline: 0.5rem;"
+                    onclick="displayBusyIndicator()">
+                         Activate
+                </a>
+            }
+            else
+            {
+                <a asp-area="Administration"
+                    asp-controller="Gallery"
+                    asp-action="Deactivate"
+                    asp-route-imageId="@Model.ImageId"
+                    class="btn btn-primary btn-lg btn-flat"
+                    style="width: 50%; margin-inline: 0.5rem;"
+                    onclick="displayBusyIndicator()">
+                         Deactivate
+                </a>
+            }
+        </div>
+    </div>
+</div>

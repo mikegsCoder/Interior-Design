@@ -1,0 +1,9 @@
+﻿@model IEnumerable<DesignImageViewModel>
+
+<div class="row">
+    @foreach (var image in Model)
+    {
+        <partial name="_GalleryImagePartial.cshtml" , model=image />
+    }
+</div>
+
