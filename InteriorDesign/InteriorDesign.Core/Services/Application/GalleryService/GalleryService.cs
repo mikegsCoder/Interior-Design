@@ -54,5 +54,18 @@ namespace InteriorDesign.Core.Services.Application.GalleryService
 
             await _images.SaveChangesAsync();
         }
+
+        public async Task ActivateImageAsync(string imageId)
+        {
+            var image = await _images.All()
+                .Where(i => i.Id == imageId)
+                .FirstOrDefaultAsync();
+
+            image.IsActive = true;
+
+            _images.Update(image);
+
+            await _images.SaveChangesAsync();
+        }
     }
 }

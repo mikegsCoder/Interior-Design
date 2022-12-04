@@ -9,5 +9,7 @@ namespace InteriorDesign.Core.Services.Application.GalleryService
         Task<IEnumerable<DesignImageViewModel>> GetAllImagesAsync();
 
         Task DeactivateImageAsync(string imageId);
+
+        Task ActivateImageAsync(string imageId);
     }
 }
