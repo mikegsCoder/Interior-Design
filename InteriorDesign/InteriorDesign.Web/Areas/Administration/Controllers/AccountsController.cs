@@ -42,5 +42,45 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
 
             return RedirectToAction(nameof(Index), new { message = message });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveAccountAdmin(string id)
+        {
+            var result = await _service.RemoveUserAdministratorRoleAsync(id);
+
+            var message = result ? MessageConstants.Success : MessageConstants.Failed;
+
+            return RedirectToAction(nameof(Index), new { message = message });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveAccountEmployee(string id)
+        {
+            var result = await _service.RemoveUserEmployeeRoleAsync(id);
+
+            var message = result ? MessageConstants.Success : MessageConstants.Failed;
+
+            return RedirectToAction(nameof(Index), new { message = message });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteAccount(string id)
+        {
+            var result = await _service.DeleteUserAsync(id);
+
+            var message = result ? MessageConstants.Success : MessageConstants.Failed;
+
+            return RedirectToAction(nameof(Index), new { message = message });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string id)
+        {
+            var result = await _service.ConfirmUserEmailAsync(id);
+
+            var message = result ? MessageConstants.Success : MessageConstants.Failed;
+
+            return RedirectToAction(nameof(Index), new { message = message });
+        }
     }
 }

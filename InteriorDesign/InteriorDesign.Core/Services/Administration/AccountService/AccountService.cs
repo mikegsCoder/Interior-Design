@@ -118,5 +118,142 @@ namespace InteriorDesign.Core.Services.Administration.AccountService
                 return false;
             }
         }
+
+        public async Task<bool> RemoveUserAdministratorRoleAsync(string id)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                var user = await _userManager.Users
+                    .FirstOrDefaultAsync(u => u.Id == id);
+
+                var result = await _userManager.RemoveFromRoleAsync(user, "Administrator");
+
+                return result.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Concat(nameof(AccountService), " - ", nameof(RemoveUserAdministratorRoleAsync), ": ", ex.Message), ex);
+
+                return false;
+            }
+        }
+
+        public async Task<bool> RemoveUserEmployeeRoleAsync(string id)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                var user = await _userManager.Users
+                    .FirstOrDefaultAsync(u => u.Id == id);
+
+                var result = await _userManager.RemoveFromRoleAsync(user, "Employee");
+
+                return result.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Concat(nameof(AccountService), " - ", nameof(RemoveUserEmployeeRoleAsync), ": ", ex.Message), ex);
+
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteUserAsync(string id)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                var user = await _userManager.Users
+                    .Include(u => u.Orders)
+                    .ThenInclude(o => o.ConfiguredProducts)
+                    .FirstOrDefaultAsync(u => u.Id == id);
+
+                foreach (var order in user.Orders)
+                {
+                    foreach (var product in order.ConfiguredProducts)
+                    {
+                        if (product.IsDeleted == false)
+                        {
+                            //product.IsDeleted = true;
+                            //product.DeletedOn = DateTime.Now;
+
+                            _configuredProducts.Delete(product);
+
+                            //_configuredProducts.Update(product);
+                        }
+                    }
+
+                    if (order.IsDeleted == false)
+                    {
+                        //order.IsDeleted = true;
+                        //order.DeletedOn = DateTime.Now;
+                        _orders.Delete(order);
+
+                        //_orders.Update(order);
+                    }
+                }
+
+                bool isAdmin = await _userManager.IsInRoleAsync(user, "Administrator");
+                bool isEmployee = await _userManager.IsInRoleAsync(user, "Employee");
+
+                if (isAdmin)
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "Administrator");
+                }
+
+                if (isEmployee)
+                {
+                    await _userManager.RemoveFromRoleAsync(user, "Employee");
+                }
+
+                user.IsDeleted = true;
+                user.DeletedOn = DateTime.UtcNow;
+                user.EmailConfirmed = false;
+                user.PasswordHash = _hasher.HashPassword(null, DateTime.UtcNow.ToString());
+
+                await _configuredProducts.SaveChangesAsync();
+                await _orders.SaveChangesAsync();
+                var result = await _userManager.UpdateAsync(user);
+
+                return result.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Concat(nameof(AccountService), " - ", nameof(DeleteUserAsync), ": ", ex.Message), ex);
+
+                return false;
+            }
+        }
+
+        public async Task<bool> ConfirmUserEmailAsync(string id)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test Exception");
+
+                var user = await _userManager.Users
+                    .FirstOrDefaultAsync(u => u.Id == id);
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+
+                return result.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Concat(nameof(AccountService), " - ", nameof(ConfirmUserEmailAsync), ": ", ex.Message), ex);
+
+                return false;
+            }
+        }
     }
 }
