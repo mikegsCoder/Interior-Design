@@ -14,6 +14,20 @@ namespace InteriorDesign.Core.Services.Common.ContactService
             _contacts = contacts;
         }
 
+        public async Task ClearAnsweredAsync()
+        {
+            var contactsToClear = await _contacts.All()
+                .Where(c => c.IsAnswered)
+                .ToListAsync();
+
+            foreach (var contact in contactsToClear)
+            {
+                _contacts.Delete(contact);
+            }
+
+            await _contacts.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<AdminContactViewModel>> GetAllContactsAsync()
         {
             var contacts = await _contacts.AllAsNoTracking()
@@ -34,6 +48,22 @@ namespace InteriorDesign.Core.Services.Common.ContactService
             return contacts;
         }
 
+        public async Task<AdminContactViewModel> GetContactByIdAsync(string contactId)
+        {
+            var contact = await _contacts.AllAsNoTracking()
+                .Where(c => c.Id == contactId)
+                .Select(c => new AdminContactViewModel()
+                {
+                    Id = c.Id,
+                    From = c.From,
+                    Subject = c.Subject,
+                    Message = c.Message,
+                })
+                .FirstOrDefaultAsync();
+
+            return contact;
+        }
+
         public async Task<IEnumerable<AdminContactViewModel>> GetNotAnsweredContactsAsync()
         {
             var contacts = await _contacts.AllAsNoTracking()
@@ -49,22 +79,6 @@ namespace InteriorDesign.Core.Services.Common.ContactService
               .ToListAsync();
 
             return contacts;
-        }
-
-        public async Task<AdminContactViewModel> GetContactByIdAsync(string contactId)
-        {
-            var contact = await _contacts.AllAsNoTracking()
-                .Where(c => c.Id == contactId)
-                .Select(c => new AdminContactViewModel()
-                {
-                    Id = c.Id,
-                    From = c.From,
-                    Subject = c.Subject,
-                    Message = c.Message,
-                })
-                .FirstOrDefaultAsync();
-
-            return contact;
         }
 
         public async Task MarkContactAsAnsweredAsync(string contactId)

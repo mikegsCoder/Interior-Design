@@ -11,5 +11,7 @@ namespace InteriorDesign.Core.Services.Common.ContactService
         Task<AdminContactViewModel> GetContactByIdAsync(string contactId);
 
         Task MarkContactAsAnsweredAsync(string contactId);
+
+        Task ClearAnsweredAsync();
     }
 }

@@ -78,5 +78,22 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(ContactsController), nameof(AnswerToContact));
             }
         }
+
+        public async Task<IActionResult> ClearAnswered()
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception!");
+
+                await _contactService.ClearAnsweredAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ContactsController), nameof(ClearAnswered));
+            }
+        }
     }
 }
