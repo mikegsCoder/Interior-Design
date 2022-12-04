@@ -60,5 +60,25 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
 
             return null;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ClearChatHistory()
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception!");
+
+                await _chatService.ClearChatHistoryAsync();
+
+                isHistoryLoaded = false;
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ChatController), nameof(ClearChatHistory));
+            }
+        }
     }
 }

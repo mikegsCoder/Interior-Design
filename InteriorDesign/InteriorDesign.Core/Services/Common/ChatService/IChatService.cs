@@ -7,5 +7,7 @@ namespace InteriorDesign.Core.Services.Common.ChatService
         Task<ChatViewModel> GetAllMessagesAsync();
 
         Task SaveMessageAsync(ChatViewModel model);
+
+        Task ClearChatHistoryAsync();
     }
 }

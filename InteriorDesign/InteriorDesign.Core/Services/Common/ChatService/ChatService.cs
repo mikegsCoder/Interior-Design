@@ -14,6 +14,19 @@ namespace InteriorDesign.Core.Services.Common.ChatService
             _messages = messages;
         }
 
+        public async Task ClearChatHistoryAsync()
+        {
+            var chatMessages = await _messages.All()
+                .ToListAsync();
+
+            foreach (var message in chatMessages)
+            {
+                _messages.Delete(message);
+            }
+
+            await _messages.SaveChangesAsync();
+        }
+
         public async Task<ChatViewModel> GetAllMessagesAsync()
         {
             var chatmodel = new ChatViewModel();
