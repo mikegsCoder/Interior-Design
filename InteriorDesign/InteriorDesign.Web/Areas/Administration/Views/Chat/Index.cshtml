@@ -1,0 +1,141 @@
+﻿@model ChatViewModel
+
+@{
+    ViewData["Title"] = "Company Chat";
+}
+
+<div class="wow fadeInUp">
+    <div class="section-header">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+   
+    @if (Model.Messages.Count > 0)
+    {
+        <div class="row">
+            <div class="col-12 text-right">
+                <a asp-area="Administration"
+                    asp-controller="Chat"
+                    asp-action="ClearChatHistory"
+                    onclick="return confirm('Are you sure you want to clear chat history?')"
+                    id="btn-secondary"
+                    class="btn-secondary btn-danger"
+                    style="padding: 0.3rem 0.8rem; margin-right: 0.5rem;">
+                         Clear Chat History
+                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                </a>
+                <br />
+            </div>
+        </div>
+    }
+    
+    <div>
+        <form asp-controller="Chat" asp-action="SaveMessage" method="post" name="sendMessageChat" class="container" style="margin-top: 1rem;">
+            <div class="row">
+                <div class="col-4">
+                    <input asp-for="@Model.Sender" hidden type="text" id="userInput" value="@User.Identity.Name" />
+                </div>
+            </div>
+            <div class="row" style="margin-left: 4.5rem; display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="col-2">
+                    <button type="submit" 
+                        id="sendButton" 
+                        class="btn-secondary btn-warning" 
+                        style="margin-top: 1rem;">
+                            Send Message
+                    </button>
+                    <br />
+                </div>
+                <div class="col-10">
+                    <textarea asp-for="@Model.Message"
+                        name="Message"
+                        style="resize:none;"
+                        class="form-control"
+                        rows="2"
+                        cols="200"
+                        id="messageInput"
+                        spellcheck="false"
+                        placeholder="Your message ..."></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+        
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        
+        <div class="row">
+            <ul id="messagesList" style="width: 100%; list-style-type: none;">
+                @foreach (var message in Model.Messages)
+                {
+                    <partial name="_ChatRowPartial" , model=message />
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+    
+        //Disable the send button until connection is established.
+        document.getElementById("sendButton").disabled = true;
+    
+        connection.on("ReceiveMessage", function (user, message) {
+            
+            let chatInfo = `
+            <li>
+                <div class="card bg-light" style="width: 100%;">
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0" style="margin-top: 0;">
+                            <p style="margin-bottom: 10px;">${message}</p>
+                            <footer class="blockquote-footer">${user}</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </li>`;
+    
+            $('#messagesList').prepend(chatInfo);
+            document.getElementById('messageInput').value = '';
+            $('#messagesList')[0].scrollTop = $('#messagesList')[0].scrollHeight;
+        });
+    
+        connection.start().then(function () {
+            document.getElementById("sendButton").disabled = false;
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+    
+        document.getElementById("sendButton").addEventListener("click", function (event) {
+            var user = document.getElementById("userInput").value;
+            var messageText = document.getElementById("messageInput").value;
+    
+            if (messageText.length < 2) {
+                return;
+            }
+    
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(':)', "🙂")
+                    .replace(':(', "🙁")
+                    .replace(';)', "😉")
+                    .replace(':*', "😘")
+                    .replace(/<3/g, "❤")
+                    .replace(/:D/g, "😀")
+                    .replace(/:P/g, "😜");
+            }
+    
+            let message = escapeHtml(messageText);
+    
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+        });
+    </script>
+}
