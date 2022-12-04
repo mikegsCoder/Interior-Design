@@ -14,6 +14,26 @@ namespace InteriorDesign.Core.Services.Common.ContactService
             _contacts = contacts;
         }
 
+        public async Task<IEnumerable<AdminContactViewModel>> GetAllContactsAsync()
+        {
+            var contacts = await _contacts.AllAsNoTracking()
+                .Select(c => new AdminContactViewModel()
+                {
+                    Id = c.Id,
+                    From = c.From,
+                    Subject = c.Subject,
+                    Message = c.Message,
+                    IsAnswered = c.IsAnswered
+                })
+                .ToListAsync();
+
+            contacts = contacts
+                .OrderBy(c => c.IsAnswered)
+                .ToList();
+
+            return contacts;
+        }
+
         public async Task<IEnumerable<AdminContactViewModel>> GetNotAnsweredContactsAsync()
         {
             var contacts = await _contacts.AllAsNoTracking()
