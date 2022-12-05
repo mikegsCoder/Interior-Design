@@ -1,0 +1,26 @@
+﻿@model OurTeamViewModel
+
+<div class="col-lg-3 col-md-6">
+    <div class="member">
+        <div class="pic"><img src="@Model.ImageUrl" alt=""></div>
+        <div class="details">
+            <h4>@Model.Name</h4>
+            <span>@Model.Position</span>
+            <div class="social">
+                <a href="@Model.TwitterUrl" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="@Model.FacebookUrl" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="@Model.GooglePlusUrl" target="_blank"><i class="fa fa-google-plus"></i></a>
+                <a href="@Model.LinkedInUrl" target="_blank"><i class="fa fa-linkedin"></i></a>
+            </div>
+            <a asp-area="Administration"
+                asp-controller="OurTeam"
+                asp-action="Edit"
+                asp-route-memberId="@Model.MemberId"
+                class="btn btn-primary btn-lg btn-flat"
+                style="width: 50%; margin-inline: 0.5rem;"
+                onclick="displayBusyIndicator()">
+                    Edit
+            </a>
+        </div>
+    </div>
+</div>
