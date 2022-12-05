@@ -22,5 +22,23 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string memberId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                var model = await _ourTeamService.GetMemberByIdAsync(memberId);
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(OurTeamController), nameof(Edit));
+            }
+        }
     }
 }
