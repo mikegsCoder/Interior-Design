@@ -1,0 +1,9 @@
+﻿@model IEnumerable<OurTeamViewModel>
+
+<div class="row">
+    @foreach (var member in Model)
+    {
+        <partial name="_TeamMemberPartial.cshtml" , model=member />
+    }
+</div>
+
