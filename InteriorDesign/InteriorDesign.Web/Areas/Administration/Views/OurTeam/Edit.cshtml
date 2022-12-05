@@ -1,0 +1,129 @@
+﻿@model OurTeamViewModel
+
+@{
+    ViewData["Title"] = "Edit Team Member";
+}
+
+<div id="product-wrapper" class="wrapper wow fadeInUp">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-10">
+                    <h1>@ViewData["Title"]: @Model.Name - @Model.Position</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+                        <div class="col-12">
+                            <img src="@Model.ImageUrl" class="member-image" alt="@Model.Name">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <form asp-area="Administration" asp-controller="OurTeam" asp-action="Edit" class="mt-4" style="display: flex;" enctype="multipart/form-data">
+                           
+                            <input type="hidden" asp-for="@Model.Name" />
+                            <input type="hidden" asp-for="@Model.MemberId" />
+                            
+                            <div style="width: 100%; display: flex; flex-direction: column;">
+                                <div class="row" style="margin-inline: 0.5rem;">
+                                    <div class="col-12">
+                                        <span style="color: red"><strong>Image Url:</strong></span>
+                                        <input asp-for="ImageUrl"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="ImageUrl ..." 
+                                           value="@Model.ImageUrl"/>
+                                        <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="margin-top: 1rem;color: red"><strong>Position:</strong></span>
+                                        <input asp-for="Position"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="Position ..." 
+                                           value="@Model.Position" />
+                                        <span asp-validation-for="@Model.Position" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="margin-top: 1rem;color: red"><strong>Twitter URL:</strong></span>
+                                        <input asp-for="TwitterUrl"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="Facebook URL ..."
+                                           value="@Model.TwitterUrl" />
+                                        <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="margin-top: 1rem;color: red"><strong>Facebook URL:</strong></span>
+                                        <input asp-for="FacebookUrl"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="Facebook URL ..."
+                                           value="@Model.FacebookUrl" />
+                                        <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <span style="margin-top: 1rem;color: red"><strong>Google+ URL:</strong></span>
+                                        <input asp-for="GooglePlusUrl"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="Google+ URL ..."
+                                           value="@Model.GooglePlusUrl" />
+                                        <span asp-validation-for="@Model.GooglePlusUrl" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span style="margin-top: 1rem;color: red"><strong>LinkedIn URL:</strong></span>
+                                        <input asp-for="LinkedInUrl"
+                                           type="text"
+                                           style="width: 100%;"
+                                           placeholder="LinkedIn URL ..."
+                                           value="@Model.LinkedInUrl" />
+                                        <span asp-validation-for="@Model.LinkedInUrl" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin: 0.5rem; display: flex; flex-direction: row; justify-content: space-between;">
+                                    <a asp-area="Administration"
+                                        asp-controller="OurTeam"
+                                        asp-action="Index"
+                                        class="btn btn-secondary btn-lg btn-flat"
+                                        style="width: 48%;"
+                                        on onclick="displayBusyIndicator()">
+                                            Cancel
+                                    </a>
+                                    <button type="submit"
+                                        class="btn btn-primary btn-lg btn-flat"
+                                        style="width: 48%;"
+                                        onclick="return confirm('Are you sure you want to save changes?')">
+                                            Edit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
