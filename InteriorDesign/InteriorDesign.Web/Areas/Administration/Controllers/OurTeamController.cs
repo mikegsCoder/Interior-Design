@@ -40,5 +40,28 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(OurTeamController), nameof(Edit));
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(OurTeamViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                await _ourTeamService.EditTeamMemeberAsync(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(OurTeamController), nameof(Edit));
+            }
+        }
     }
 }
