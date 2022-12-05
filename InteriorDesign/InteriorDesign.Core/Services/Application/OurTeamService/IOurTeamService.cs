@@ -7,5 +7,7 @@ namespace InteriorDesign.Core.Services.Application.OurTeamService
         Task<IEnumerable<OurTeamViewModel>> GetTeamAsync();
 
         Task<OurTeamViewModel> GetMemberByIdAsync(string memberId);
+
+        Task EditTeamMemeberAsync(OurTeamViewModel model);
     }
 }

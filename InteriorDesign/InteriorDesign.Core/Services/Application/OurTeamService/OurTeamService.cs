@@ -48,5 +48,23 @@ namespace InteriorDesign.Core.Services.Application.OurTeamService
                 })
                 .FirstOrDefaultAsync();
         }
+
+        public async Task EditTeamMemeberAsync(OurTeamViewModel model)
+        {
+            var member = await _team.All()
+                .Where(m => m.Id == model.MemberId)
+                .FirstOrDefaultAsync();
+
+            member.Position = model.Position;
+            member.ImageUrl = model.ImageUrl;
+            member.TwitterUrl = model.TwitterUrl;
+            member.FacebookUrl = model.FacebookUrl;
+            member.GooglePlusUrl = model.GooglePlusUrl;
+            member.LinkedInUrl = model.LinkedInUrl;
+
+            _team.Update(member);
+
+            await _team.SaveChangesAsync();
+        }
     }
 }
