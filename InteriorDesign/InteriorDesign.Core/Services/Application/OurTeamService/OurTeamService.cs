@@ -30,5 +30,23 @@ namespace InteriorDesign.Core.Services.Application.OurTeamService
                 })
                 .ToListAsync();
         }
+
+        public async Task<OurTeamViewModel> GetMemberByIdAsync(string memberId)
+        {
+            return await _team.AllAsNoTracking()
+                .Where(m => m.Id == memberId)
+                .Select(m => new OurTeamViewModel()
+                {
+                    MemberId = m.Id,
+                    Name = m.FirstName + " " + m.LastName,
+                    Position = m.Position,
+                    ImageUrl = m.ImageUrl,
+                    TwitterUrl = m.TwitterUrl,
+                    FacebookUrl = m.FacebookUrl,
+                    GooglePlusUrl = m.GooglePlusUrl,
+                    LinkedInUrl = m.LinkedInUrl
+                })
+                .FirstOrDefaultAsync();
+        }
     }
 }
