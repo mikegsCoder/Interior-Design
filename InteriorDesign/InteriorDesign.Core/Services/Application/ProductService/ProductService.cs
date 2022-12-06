@@ -190,5 +190,16 @@ namespace InteriorDesign.Core.Services.Application.ProductService
 
             await _products.SaveChangesAsync();
         }
+
+        public async Task DeleteProductByIdAsync(string productId)
+        {
+            var product = await _products.All()
+                .Where(p => p.Id == productId)
+                .FirstOrDefaultAsync();
+
+            _products.Delete(product);
+
+            await _products.SaveChangesAsync();
+        }
     }
 }
