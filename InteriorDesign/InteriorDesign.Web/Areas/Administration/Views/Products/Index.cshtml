@@ -1,0 +1,64 @@
+﻿@model List<ProductInfoViewModel>
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<div>
+    @if (TempData["Error"] != null)
+    {
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="text-center" style="margin: 0; font-weight: bold;">This product exists in user product cart. You can't edit it.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    }
+    <div class="row" style="margin-bottom: 0.7rem;">
+        <div class="col-12 text-right">
+            <a asp-area="Administration"
+                asp-controller="Products"
+                asp-action="AddProduct"
+                onclick="displayBusyIndicator()"
+                id="btn-secondary"
+                class="btn-secondary btn-warning"
+                style="padding: 0.3rem 0.8rem; margin-right: 0.5rem;">
+                    Add New Product
+            </a>
+            <br />
+        </div>
+    </div>
+    <div class="card wow fadeInUp" style="margin-bottom: 4rem;">
+        <div class="card-header border-0">
+            <h3 class="card-title" style="margin-left: 1rem; color: orangered;">
+                @ViewData["Title"]
+            </h3>
+            <div class="card-tools">
+                <h3 class="card-title" style="margin-right: 3rem; color: darkorange;">
+                    products count: <strong>@Model.Count</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="card-body table-responsive p-0">
+            <table class="table table-striped table-valign-middle">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>Price</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <partial name="_ProductRowPartial" , model=product />
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
