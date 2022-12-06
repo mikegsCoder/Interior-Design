@@ -63,5 +63,23 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Product));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string productId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                var viewModel = await _productService.GetProductByIdAsync(productId);
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Edit));
+            }
+        }
     }
 }
