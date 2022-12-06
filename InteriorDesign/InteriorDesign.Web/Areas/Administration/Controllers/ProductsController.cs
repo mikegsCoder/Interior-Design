@@ -104,5 +104,23 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Edit));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string productId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                await _productService.DeleteProductByIdAsync(productId);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Delete));
+            }
+        }
     }
 }
