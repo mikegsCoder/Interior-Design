@@ -122,5 +122,23 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(ProductsController), nameof(Delete));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddProduct()
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                var model = await _productService.GetAddProductViewModelAsync();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(AddProduct));
+            }
+        }
     }
 }
