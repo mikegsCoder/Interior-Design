@@ -140,5 +140,14 @@ namespace InteriorDesign.Core.Services.Application.CartService
 
             await _configuredProducts.SaveChangesAsync();
         }
+
+        public async Task<bool> ProductExistsInCartAsync(string productId)
+        {
+            var products = await _configuredProducts.All()
+                .Where(cp => !cp.IsOrdered)
+                .ToListAsync();
+
+            return products.Any(x => x.ProductId == productId);
+        }
     }
 }

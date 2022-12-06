@@ -11,5 +11,7 @@ namespace InteriorDesign.Core.Services.Application.CartService
         Task EditAsync(ConfiguredProductViewModel model);
 
         Task DeleteProductByIdAsync(string productId);
+
+        Task<bool> ProductExistsInCartAsync(string productId);
     }
 }
