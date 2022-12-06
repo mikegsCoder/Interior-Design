@@ -168,5 +168,27 @@ namespace InteriorDesign.Core.Services.Application.ProductService
             await _configuredProducts.AddAsync(configuredProduct);
             await _configuredProducts.SaveChangesAsync();
         }
+
+        public async Task EditProductAsync(ProductViewModel model)
+        {
+            var product = await _products.All()
+                .Where(p => p.Id == model.ProductId)
+                .FirstOrDefaultAsync();
+
+            decimal price = 0;
+
+            if (!decimal.TryParse(model.ProductPriceString, NumberStyles.Float, CultureInfo.InvariantCulture, out price)
+                || price < 5.00M || price > 2000.00M)
+            {
+                throw new InvalidDataException("Invalid price provided.");
+            }
+
+            product.ImageUrl = model.ImageUrl;
+            product.Price = price;
+
+            _products.Update(product);
+
+            await _products.SaveChangesAsync();
+        }
     }
 }
