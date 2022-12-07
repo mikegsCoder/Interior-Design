@@ -201,5 +201,21 @@ namespace InteriorDesign.Core.Services.Application.ProductService
 
             await _products.SaveChangesAsync();
         }
+
+        public async Task<AddProductViewModel> GetAddProductViewModelAsync()
+        {
+            var model = new AddProductViewModel();
+
+            var colors = await _colors.AllAsNoTracking()
+                .ToListAsync();
+
+            var models = await _models.AllAsNoTracking()
+                .ToListAsync();
+
+            model.Colors = colors;
+            model.Models = models;
+
+            return model;
+        }
     }
 }
