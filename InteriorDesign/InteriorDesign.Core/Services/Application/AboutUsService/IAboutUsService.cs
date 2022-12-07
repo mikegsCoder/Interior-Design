@@ -9,5 +9,7 @@ namespace InteriorDesign.Core.Services.Application.AboutUsService
         Task<IEnumerable<TestimonialViewModel>> GetAllTestimonialsAsync();
 
         Task DeactivateTestimonialAsync(string testimonilaId);
+
+        Task ActivateTestimonialAsync(string testimonilaId);
     }
 }
