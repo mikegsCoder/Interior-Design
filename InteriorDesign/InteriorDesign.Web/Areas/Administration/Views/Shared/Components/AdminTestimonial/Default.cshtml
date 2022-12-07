@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TestimonialViewModel>
+
+<div class="row">
+    @foreach (var testimonial in Model)
+    {
+        <partial name="_TestimonialPartial.cshtml" , model=testimonial />
+    }
+</div>
+
