@@ -1,0 +1,40 @@
+﻿@model TestimonialViewModel
+
+<div class="col-lg-3 col-md-6">
+    <div class="member">
+        <div class="details">
+            <h4>@Model.Author</h4>
+            <p style="height: 15vh; margin-top: 0.5rem; margin-inline: 0.5rem;">
+                @Model.Content
+            </p>
+            <span style="margin-bottom: 0.5rem;">
+                Status: <strong>@(Model.IsActive ? "Active" : "Inactive")</strong>
+            </span>
+
+            @if (!Model.IsActive)
+            {
+                <a asp-area="Administration"
+                    asp-controller="Testimonials"
+                    asp-action="Activate"
+                    asp-route-testimonialId="@Model.TestimonialId"
+                    class="btn btn-info btn-lg btn-flat"
+                    style="width: 50%; margin-inline: 0.5rem;"
+                    onclick="displayBusyIndicator()">
+                         Activate
+                </a>
+            }
+            else
+            {
+                <a asp-area="Administration"
+                    asp-controller="Testimonials"
+                    asp-action="Deactivate"
+                    asp-route-testimonialId="@Model.TestimonialId"
+                    class="btn btn-primary btn-lg btn-flat"
+                    style="width: 50%; margin-inline: 0.5rem;"
+                    onclick="displayBusyIndicator()">
+                         Deactivate
+                </a>
+            }
+        </div>
+    </div>
+</div>
