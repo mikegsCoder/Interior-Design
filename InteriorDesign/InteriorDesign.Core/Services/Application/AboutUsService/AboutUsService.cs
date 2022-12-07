@@ -43,5 +43,18 @@ namespace InteriorDesign.Core.Services.Application.AboutUsService
                 .OrderByDescending(t => t.IsActive)
                 .ToListAsync();
         }
+
+        public async Task DeactivateTestimonialAsync(string testimonilaId)
+        {
+            var testimonial = await _testimonials.All()
+                .Where(t => t.Id == testimonilaId)
+                .FirstOrDefaultAsync();
+
+            testimonial.IsActive = false;
+
+            _testimonials.Update(testimonial);
+
+            await _testimonials.SaveChangesAsync();
+        }
     }
 }
