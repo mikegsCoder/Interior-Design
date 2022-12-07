@@ -40,6 +40,16 @@
         public const int ProductQuantityMinRange = 1;
         public const int ProductQuantityMaxRange = 9;
 
+        // AddProductViewModel
+        public const int AddProductNameMinLength = 3;
+        public const int AddProductNameMaxLength = 25;
+
+        public const double AddProductPriceMinRange = 10.00;
+        public const double AddProductPriceMaxRange = 2000.00;
+
+        public const int AddProductImageUrlMinLength = 5;
+        public const int AddProductImageUrlMaxLength = 200;
+
         // ConfiguredProductViewModel
         public const int ConfiguredProductQuantityMinRange = 1;
         public const int ConfiguredProductQuantityMaxRange = 9;
