@@ -1,0 +1,84 @@
+﻿@model AddProductViewModel
+
+@{
+    ViewData["Title"] = "Add New Product";
+}
+<div class="card card-warning wow fadeInUp" style="width: 50vw; margin: 0 auto;">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+
+    <form asp-area="Administration" asp-controller="Products" asp-action="AddProduct">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="ProductName">Product name:</label>
+                <input asp-for="ProductName" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Enter product name ...">
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ImageUrl">Image Url:</label>
+                <input asp-for="ImageUrl" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Enter image Url ...">
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ProductPrice">Product price:</label>
+                <input asp-for="ProductPrice"
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Enter product price ...">
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.ModelId" class="form-label">Model</label>
+                <select asp-for="@Model.ModelId" class="form-control">
+                    @foreach (var productModel in Model.Models)
+                    {
+                        <option value="@productModel.Id">@productModel.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ModelId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.ColorId" class="form-label">Color</label>
+                <select asp-for="@Model.ColorId" class="form-control">
+                    @foreach (var productColor in Model.Colors)
+                    {
+                        <option value="@productColor.Id">@productColor.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ModelId" class="text-danger"></span>
+            </div>
+            
+        </div>
+
+        <div class="card-footer">
+            <a asp-area="Administration"
+                asp-controller="Products"
+                asp-action="Index"
+                class="btn btn-secondary btn-flat"
+                on onclick="displayBusyIndicator()">
+                    Cancel
+            </a>
+            <button type="submit"
+                class="btn btn-primary btn-flat"
+                onclick="return confirm('Are you sure you want to add this product?')">
+                    Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
