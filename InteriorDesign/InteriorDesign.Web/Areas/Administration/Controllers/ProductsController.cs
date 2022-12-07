@@ -140,5 +140,28 @@ namespace InteriorDesign.Web.Areas.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(ProductsController), nameof(AddProduct));
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(AddProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                await _productService.AddProductAsync(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(ProductsController), nameof(AddProduct));
+            }
+        }
     }
 }
