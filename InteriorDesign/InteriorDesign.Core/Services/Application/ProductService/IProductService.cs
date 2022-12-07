@@ -17,5 +17,7 @@ namespace InteriorDesign.Core.Services.Application.ProductService
         Task DeleteProductByIdAsync(string productId);
 
         Task<AddProductViewModel> GetAddProductViewModelAsync();
+
+        Task AddProductAsync(AddProductViewModel model);
     }
 }
