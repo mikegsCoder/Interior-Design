@@ -5,5 +5,7 @@ namespace InteriorDesign.Core.Services.Application.AboutUsService
     public interface IAboutUsService
     {
         Task<IEnumerable<TestimonialViewModel>> GetActiveTestimonialsAsync();
+
+        Task<IEnumerable<TestimonialViewModel>> GetAllTestimonialsAsync();
     }
 }

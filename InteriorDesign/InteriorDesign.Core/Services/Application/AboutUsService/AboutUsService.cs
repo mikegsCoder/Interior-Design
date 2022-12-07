@@ -28,5 +28,20 @@ namespace InteriorDesign.Core.Services.Application.AboutUsService
                 })
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<TestimonialViewModel>> GetAllTestimonialsAsync()
+        {
+            return await _testimonials.AllAsNoTracking()
+                .Select(t => new TestimonialViewModel()
+                {
+                    TestimonialId = t.Id,
+                    Author = t.Author,
+                    Title = t.Title,
+                    Content = t.Content.Trim(),
+                    IsActive = t.IsActive
+                })
+                .OrderByDescending(t => t.IsActive)
+                .ToListAsync();
+        }
     }
 }
