@@ -40,5 +40,23 @@ namespace InteriorDesign.Web.Administration.Controllers
                 return RedirectToError(ex, _logger, nameof(TestimonialsController), nameof(Deactivate));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Activate(string testimonialId)
+        {
+            try
+            {
+                // Use this exception to test error handling:
+                //throw new Exception("Test exception");
+
+                await _aboutUsService.ActivateTestimonialAsync(testimonialId);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToError(ex, _logger, nameof(TestimonialsController), nameof(Activate));
+            }
+        }
     }
 }
