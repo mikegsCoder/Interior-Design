@@ -1,0 +1,31 @@
+﻿@model AdminContactViewModel
+
+<tr style="text-align: center;">
+    <td>@Model.From</td>
+    <td>@Model.Subject</td>
+    <td>@Model.Message</td>
+    @if (Model.IsAnswered)
+    {
+        <td>Yes</td>
+    }
+    else
+    {
+        <td>No</td>
+    }
+    <td>
+        @if (!Model.IsAnswered)
+        {
+            <a asp-area="Administration"
+                asp-controller="Contacts"
+                asp-action="AnswerToContact"
+                asp-route-contactId="@Model.Id"
+                class="text-muted">
+                     <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a>
+        }
+        else
+        {
+            <i class="fa fa-check" aria-hidden="true"></i>
+        }
+    </td>
+</tr>
