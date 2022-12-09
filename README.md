@@ -8,15 +8,15 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
 
 ## :arrow_forward: Getting Started:
 
-1. Clone the repo
+1. Clone the repo.
    ```sh
    git clone https://github.com/mikegsCoder/Interior-Design.git
    ```
-2. Open the solution with Visual Studio 2022
+2. Open the solution with Visual Studio 2022.
    <!-- ```sh
    View -> Terminal
    ``` -->
-3. Fix Connection String if you need to do this. It locates in appsettings.json
+3. Fix the Connection String if you need to do this. You can find it in the appsettings.json file.
    <!-- ```sh
    npm install
    ``` -->
