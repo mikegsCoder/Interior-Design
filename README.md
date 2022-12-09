@@ -12,7 +12,7 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
    ```sh
    git clone https://github.com/mikegsCoder/Interior-Design.git
    ```
-2. Open open the solution with Visual Studio 2022
+2. Open the solution with Visual Studio 2022
    <!-- ```sh
    View -> Terminal
    ``` -->
