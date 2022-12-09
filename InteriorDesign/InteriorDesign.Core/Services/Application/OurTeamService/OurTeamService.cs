@@ -17,6 +17,8 @@ namespace InteriorDesign.Core.Services.Application.OurTeamService
         public async Task<IEnumerable<OurTeamViewModel>> GetTeamAsync()
         {
             return await _team.AllAsNoTracking()
+                .OrderBy(m => m.Position)
+                .ThenBy(m => m.FirstName)
                 .Select(m => new OurTeamViewModel()
                 {
                     MemberId = m.Id,
