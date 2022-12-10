@@ -13,11 +13,11 @@
     <td>@String.Format("{0:0.00}", Model.ProductPrice) <i class="fa fa-eur" aria-hidden="true"></i></td>
     <td>
         <a asp-action="EditProduct"
-           asp-controller="Cart"
-           asp-route-productId="@Model.Id"
-           class="text-muted"
-           onclick="displayBusyIndicator()">
-            <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: darkred"></i>
+            asp-controller="Cart"
+            asp-route-productId="@Model.Id"
+            class="text-muted"
+            onclick="displayBusyIndicator()">
+                <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: darkred"></i>
         </a>
     </td>
 </tr>

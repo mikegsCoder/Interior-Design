@@ -4,22 +4,9 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@*<ul class="navbar-nav">*@
 @if (SignInManager.IsSignedIn(User))
 {
-    @*<li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>*@
-
     var user = User.Identity?.Name?.Substring(0, User.Identity.Name.IndexOf('@'));
-    @*<li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage</a>
-    </li>*@
     <li>
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logout-btn" 
@@ -28,22 +15,10 @@
                     Logout
             </button>
         </form>
-        @*<a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" title="Logout">Logout</a>*@
-        @*<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button type="submit">Logout</button>
-            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>*@
     </li>
 }
 else
 {
-   @* <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>*@
-
     <li>
         <a asp-area="Identity" 
             asp-page="/Account/Register"
@@ -59,4 +34,3 @@ else
         </a>
     </li>
 }
-@*</ul>*@

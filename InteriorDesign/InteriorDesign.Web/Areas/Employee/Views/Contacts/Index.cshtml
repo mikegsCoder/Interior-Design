@@ -39,20 +39,6 @@
                             @foreach (var contact in Model)
                             {
                                 <partial name="_ContactRowPartial" , model=contact />
-                               @* <tr style="text-align: center;">
-                                    <td>@contact.From</td>
-                                    <td>@contact.Subject</td>
-                                    <td>@contact.Message</td>
-                                    <td>
-                                        <a asp-area="Employee"
-                                            asp-controller="Contacts"
-                                            asp-action="AnswerToContact"
-                                            asp-route-contactId="@contact.Id"
-                                            class="text-muted">
-                                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>*@
                             }
                         </tbody>
                     </table>

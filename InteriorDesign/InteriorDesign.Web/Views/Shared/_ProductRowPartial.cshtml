@@ -12,12 +12,12 @@
     <td>@String.Format("{0:0.00}", Model.ProductPrice).Replace(",", ".") <i class="fa fa-eur" aria-hidden="true"></i></td>
     <td>
         <a asp-area=""
-           asp-controller="Products"
-           asp-action="Product"
-           asp-route-productId="@Model.Id"
-           class="text-muted"
-           onclick="displayBusyIndicator()">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            asp-controller="Products"
+            asp-action="Product"
+            asp-route-productId="@Model.Id"
+            class="text-muted"
+            onclick="displayBusyIndicator()">
+                <i class="fa fa-search" aria-hidden="true"></i>
         </a>
     </td>
 </tr>
