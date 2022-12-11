@@ -49,24 +49,6 @@ namespace InteriorDesign.Web.ViewComponents
             }
 
             return View(model);
-
-            //try
-            //{
-            //    // Use this exception to test error handling:
-            //    //throw new Exception("Test Exception");
-
-            //    var model = _ourTeamService.GetTeamAsync().GetAwaiter().GetResult();
-
-            //    return View(model);
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(string.Concat(nameof(OurTeamViewComponent), ": ", ex.Message), ex);
-                
-            //    _httpContextAccessor?.HttpContext?.Response.Redirect("/Home/ApplicationError");
-
-            //    return View(new List<OurTeamViewModel>());
-            //}
         }
     }
 }

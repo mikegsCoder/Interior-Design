@@ -181,22 +181,13 @@ namespace InteriorDesign.Core.Services.Administration.AccountService
                     {
                         if (product.IsDeleted == false)
                         {
-                            //product.IsDeleted = true;
-                            //product.DeletedOn = DateTime.Now;
-
                             _configuredProducts.Delete(product);
-
-                            //_configuredProducts.Update(product);
                         }
                     }
 
                     if (order.IsDeleted == false)
                     {
-                        //order.IsDeleted = true;
-                        //order.DeletedOn = DateTime.Now;
                         _orders.Delete(order);
-
-                        //_orders.Update(order);
                     }
                 }
 
