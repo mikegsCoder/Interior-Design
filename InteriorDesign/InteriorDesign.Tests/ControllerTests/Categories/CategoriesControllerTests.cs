@@ -102,5 +102,23 @@ namespace InteriorDesign.Tests.ControllerTests.CategoriesControllerTests
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("/Home/ApplicationError", redirectResult.Url);
         }
+
+        [Fact]
+        public async Task KitchenReturnsViewResultWhenGetModelFromCache()
+        {
+            cache.Setup(x => x.TryGetValue(It.IsAny<object>(), out testModel))
+                .Returns(true);
+
+            var controller = new CategoriesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.Kitchen();
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Equal("CategoryType", viewResult.ViewName);
+            Assert.Null(viewResult.Model);
+        }
     }
 }
