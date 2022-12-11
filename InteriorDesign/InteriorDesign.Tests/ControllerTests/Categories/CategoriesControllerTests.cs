@@ -56,5 +56,19 @@ namespace InteriorDesign.Tests.ControllerTests.CategoriesControllerTests
             Assert.Null(viewResult.ViewName);
             Assert.Null(viewResult.Model);
         }
+
+        [Fact]
+        public async Task GardenReturnsRedirectResultToApplicationError()
+        {
+            var controller = new CategoriesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.Garden();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Home/ApplicationError", redirectResult.Url);
+        }
     }
 }
