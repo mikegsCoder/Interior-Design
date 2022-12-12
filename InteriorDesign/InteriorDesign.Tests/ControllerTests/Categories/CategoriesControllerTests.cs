@@ -184,5 +184,19 @@ namespace InteriorDesign.Tests.ControllerTests.CategoriesControllerTests
             Assert.Equal("CategoryType", viewResult.ViewName);
             Assert.Null(viewResult.Model);
         }
+
+        [Fact]
+        public async Task LivingRoomReturnsRedirectResultToApplicationError()
+        {
+            var controller = new CategoriesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.LivingRoom();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Home/ApplicationError", redirectResult.Url);
+        }
     }
 }
