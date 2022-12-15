@@ -667,5 +667,19 @@ namespace InteriorDesign.Tests.ControllerTests.ModelsControllerTests
             Assert.Equal("CategoryTypeModels", viewResult.ViewName);
             Assert.Null(viewResult.Model);
         }
+
+        [Fact]
+        public async Task YoungRoom_Table_ReturnsRedirectResultToApplicationError()
+        {
+            var controller = new ModelsController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.YoungRoom_Table();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Home/ApplicationError", redirectResult.Url);
+        }
     }
 }
