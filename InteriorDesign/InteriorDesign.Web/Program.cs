@@ -113,13 +113,13 @@ app.UseHsts();
 
 app.Use(async (context, next) =>
 {
-await next();
+    await next();
 
-if (context.Response.StatusCode == 404)
-{
-context.Request.Path = "/Home/NotFound404";
-await next();
-}
+    if (context.Response.StatusCode == 404)
+    {
+    context.Request.Path = "/Home/NotFound404";
+    await next();
+    }
 });
 
 app.UseHttpsRedirection();
