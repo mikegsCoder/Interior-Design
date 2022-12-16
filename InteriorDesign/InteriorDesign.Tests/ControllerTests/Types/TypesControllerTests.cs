@@ -56,5 +56,19 @@ namespace InteriorDesign.Tests.ControllerTests.TypesControllerTests
             Assert.Null(viewResult.ViewName);
             Assert.Null(viewResult.Model);
         }
+
+        [Fact]
+        public async Task WardrobeReturnsRedirectResultToApplicationError()
+        {
+            var controller = new TypesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.Wardrobe();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Home/ApplicationError", redirectResult.Url);
+        }
     }
 }
