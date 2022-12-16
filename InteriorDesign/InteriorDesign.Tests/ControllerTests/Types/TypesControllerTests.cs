@@ -38,5 +38,23 @@ namespace InteriorDesign.Tests.ControllerTests.TypesControllerTests
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("/Home/ApplicationError", redirectResult.Url);
         }
+
+        [Fact]
+        public async Task BedRoom_Bed_ReturnsViewResultWhenGetModelFromCache()
+        {
+            cache.Setup(x => x.TryGetValue(It.IsAny<object>(), out testModel))
+                .Returns(true);
+
+            var controller = new TypesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.Index();
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Null(viewResult.ViewName);
+            Assert.Null(viewResult.Model);
+        }
     }
 }
