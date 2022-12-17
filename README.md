@@ -13,21 +13,13 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
    git clone https://github.com/mikegsCoder/Interior-Design.git
    ```
 2. Open the solution with Visual Studio 2022.
-   <!-- ```sh
-   View -> Terminal
-   ``` -->
+   
 3. Fix the Connection String if you need to do this. You can find it in the appsettings.json file.
-   <!-- ```sh
-   npm install
-   ``` -->
-4. Start InteriorDesign.Web project. On start InteriorDesign database will be created in your MS SQL and the data will be seeded.
-   <!-- ```sh
-   npm start
-   ``` -->
-5. To start test open Text Explorer and start all tests.
-   <!-- ```sh
-   npm start
-   ``` -->
+   
+4. Start InteriorDesign.Web project. On startup InteriorDesign database will be created in your MS SQL Server and the data will be seeded.
+   
+5. To start tests open Text Explorer and run all tests.
+   
 5. To test code coverage if you don't use Visual Studio Enterprise - open Package Manager console and start the tests manually with the command given below. As a result all tests will be executed and report will be generated for you in TestResults folder in InteriorDesign.Tests project. The result will be in XML format.
    ```sh
    dotnet test --collect:"XPlat Code Coverage"
@@ -44,15 +36,15 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
   - Browse Gallery page;
   - Browse Contact page and send messages to Interior Design team;
   - Browse Register page and create new registration. Application supports external authentication with Google plus and Facebook;
-  - Browse Login page and login to application;
+  - Browse Login page and login to application.
 - Logged in users can:
   - Add products to their shopping cart; 
   - Edit configured products in their shopping cart;
-  - Delete products from their shopping cart;
+  - Delete configured products from their shopping cart;
   - Make order. Incase of successful order application email sender sends email to the user with his order status.
 - Employee can:
   - Browse Employee Panel with information about configured products, orders, order value, new contacts and messages in company chat; 
-  - Browse new orders and ship them. Incase of successful order shipment application email sender sends email to the user with his order status;
+  - Browse new orders and ship them. Incase of successful order shipment application email sender sends email to the user with his new order status;
   - Browse new contacts and answer them. In this case application email sender sends email to the user with the answer;
   - Browse company chat and write messages into it.
 - Administrator can:
@@ -60,23 +52,23 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
   - Browse Accounts page and manage the accounts: confirm email, change role or block the account;
   - Browse Orders and ship them. Incase of successful order shipment application email sender sends email to the user with his order status. Delete shipped orders;
   - Browse Contacts and answer them. In this case application email sender sends email to the user with the answer. Delete answered contacts;
-  - Browse Products and edit or delete product. The last operation is possible only if the product is not included in shopping cart. Add new product.
-  - Browse Our Team and edit team members - change image Url, position and social media links.
-  - Browse Gallery and activate or deactivate gallery images. This changes the appearance of the Gallery image page.
-  - Browse Testimonials and activate or deactivate them. This changes the appearance of the Testimonials section in About Us page.
-  - Browse company chat and write messages into it. Delete all messages;
+  - Browse Products and add new product, edit or delete existing product. The last operation is possible only if the product is not included in shopping cart;
+  - Browse Our Team and edit information about the team members - change image Url, position and social media links;
+  - Browse Gallery and activate or deactivate gallery images. This changes the appearance of the Gallery image page;
+  - Browse Testimonials and activate or deactivate them. This changes the appearance of the Testimonials section in About Us page;
+  - Browse company chat and write messages into it. Delete chat history.
 - Some more features:
   - Implemented Error handling;
-  - Implemented Inmemory cacshe;
+  - Implemented Inmemory cache;
   - Implemented External authentication providers: Google plus and Facebook;
-  - Implemented Chat with SignalR;
+  - Implemented Company chat with SignalR;
   - Implemented Email sender with Sendgrid;
   - Implemented Geolocation with Google Maps;
   - Implemented Data validation;
-  - Implemented Repository pattern
-  - Implemented ASP.NET Areas
-  - Implemented View Components
-  - Implemented Partial views
+  - Implemented Repository pattern;
+  - Implemented ASP.NET areas for Administrator and Employee roles;
+  - Implemented View Components;
+  - Implemented Partial views;
   - Implemented 404 (Not Found) page;
   - Implemented Error page for each area;
   - Implemented Loading spinner;
