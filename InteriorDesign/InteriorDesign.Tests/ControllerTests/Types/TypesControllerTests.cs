@@ -280,5 +280,19 @@ namespace InteriorDesign.Tests.ControllerTests.TypesControllerTests
             Assert.Equal("TypeCategory", viewResult.ViewName);
             Assert.Null(viewResult.Model);
         }
+
+        [Fact]
+        public async Task ShelfReturnsRedirectResultToApplicationError()
+        {
+            var controller = new TypesController(
+                service.Object,
+                logger.Object,
+                cache.Object);
+
+            var result = await controller.Shelf();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("/Home/ApplicationError", redirectResult.Url);
+        }
     }
 }
