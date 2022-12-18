@@ -154,6 +154,10 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
 
 ![InteriorDesign-AdminTestimonials](https://travel-destinations-88814.firebaseapp.com/images/interior_design/Admin_Testimonials.jpg)
 
+## :framed_picture: Screenshot - Company Chat:
+
+![InteriorDesign-CompanyChat](https://travel-destinations-88814.firebaseapp.com/images/interior_design/Company_Chat.jpg)
+
 ## :framed_picture: Screenshot - 404 page:
 
 ![InteriorDesign-404](https://travel-destinations-88814.firebaseapp.com/images/interior_design/404.jpg)
