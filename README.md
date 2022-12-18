@@ -102,9 +102,9 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
 - CSS
 - Font Awesome
 
-<!-- ## :framed_picture: Screenshot - Home Page:
+## :framed_picture: Screenshot - Home Page:
 
-![InteriorDesign-HomePage](https://github.com/mikegsCoder/mikegsCoder.github.io/img/InteriorDesign/Homa_Page.jpg) -->
+![InteriorDesign-HomePage](https://travel-destinations-88814.firebaseapp.com/images/interior_design/Home_Page.jpg)
 
 
 ## :v: Leave a feedback
