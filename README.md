@@ -102,6 +102,10 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
 - CSS
 - Font Awesome
 
+## :framed_picture: Screenshot - Home Page:
+
+![InteriorDesign-HomePage](https://github.com/mikegsCoder/mikegsCoder.github.io/tree/main/img/InteriorDesign/Homa_Page.jpg)
+
 
 ## :v: Leave a feedback
 Give a :star: if you like this app.
