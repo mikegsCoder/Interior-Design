@@ -104,7 +104,7 @@ There are roles for Employee and Administrator inplemented. Implemented applicat
 
 ## :framed_picture: Screenshot - Home Page:
 
-![InteriorDesign-HomePage](https://github.com/mikegsCoder/mikegsCoder.github.io/img/InteriorDesign/Homa_Page.jpg)
+![InteriorDesign-HomePage](https://github.com/mikegsCoder/mikegsCoder.github.io/tree/main/img/InteriorDesign/Homa_Page.jpg)
 
 
 ## :v: Leave a feedback
