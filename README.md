@@ -1,10 +1,10 @@
 # Interior-Design
 
 :dart:  My project for the [ASP.NET Advanced](https://softuni.bg/trainings/3854/asp-net-advanced-october-2022) course at SoftUni (October 2022). This is a Web application where you can order furniture, browse gallery with design images and send contact messages to the Interior Desing team.
-There are roles for Employee and Administrator inplemented. Implemented application email sender using Sendgrid. Implemented company chat using SignalR. The project is deployed on Azure.
+There are roles for Employee and Administrator inplemented. Implemented application email sender using Sendgrid. Implemented company chat using SignalR. The project was deployed on Azure and now is deployed on SmarterASP.NET.
 
 ## 🔗 **Link to the project:**
-&nbsp;&nbsp;&nbsp;&nbsp;**[Interior Design](https://interiordesign.azurewebsites.net/)**
+&nbsp;&nbsp;&nbsp;&nbsp;**[Interior Design](http://mikegscoderasp-001-site1.atempurl.com/)**
 
 ## :arrow_forward: Getting Started:
 
