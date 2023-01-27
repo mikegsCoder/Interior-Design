@@ -102,13 +102,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-app.UseDeveloperExceptionPage();
-app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
 }
 else
 {
-app.UseExceptionHandler("/Home/Error");
-app.UseHsts();
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
 app.Use(async (context, next) =>
@@ -117,8 +117,8 @@ app.Use(async (context, next) =>
 
     if (context.Response.StatusCode == 404)
     {
-    context.Request.Path = "/Home/NotFound404";
-    await next();
+        context.Request.Path = "/Home/NotFound404";
+        await next();
     }
 });
 
