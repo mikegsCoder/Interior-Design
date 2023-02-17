@@ -1,2 +1,2 @@
 * linguist-vendored
-*.csgit  linguist-vendored=false
+*.cs linguist-vendored=false
